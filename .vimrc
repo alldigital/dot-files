@@ -1,45 +1,59 @@
-" Theme
+syntax enable
 set background=dark
 colorscheme solarized
+execute pathogen#infect()
+" set runtimepath^=~/.vim/bundle/ctrlp.vi
+let g:airline_powerline_fonts = 1
 
-set nocompatible
-call pathogen#infect()
+" Set to auto read when a file is changed from the outside
+set autoread
 
-filetype plugin indent on
-syntax enable
-
-set keywordprg=":help"
-
-set autoindent
-set backspace=indent,eol,start
-
-set ttimeout
-set ttimeoutlen=50
-
-set incsearch
-set hlsearch
-
-set laststatus=2
-
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
-nnoremap <leader>v <C-w>v<C-w>l
-nnoremap <leader>s <C-w>s
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Fast saving
+nmap <leader>w :w!<cr>
 
-nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
+" Show only selected in Visual Mode
+nmap <silent> <leader>th :cal ToggleSelected(0)<cr>
+vmap <silent> <leader>th :cal ToggleSelected(1)<cr>
 
-" Add markdown syntax highlighting
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+" Split the window using some nice shortcuts
+nmap <leader>s<bar> :vsplit<cr>
+nmap <leader>s- :split<cr>
+nmap <leader>s? :map <leader>s<cr>
 
-" Enable powerline fonts
-let g:airline_powerline_fonts = 1
+" When pushing j/k on a line that is wrapped, it navigates to the same line,
+" just to the expected location rather than to the next line
+nnoremap j gj
+nnoremap k gk
 
+" Arrow key users won't survive in this environment
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
+" Fast editing of the .vimrc
+map <leader>e :e! ~/.vimrc<cr>
+
+" When .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+"
+" " Turn on the WiLd menu
+set wildmenu
+"
+" " Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+"
+" "Always show current position
+set ruler
+"
