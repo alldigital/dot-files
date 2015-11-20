@@ -1,0 +1,4 @@
+#!/bin/bash
+gnome-terminal \
+--tab -t "Local" --working-directory=$HOME  \
+--tab -t "Android" --working-directory=$HOME/Android
