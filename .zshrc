@@ -93,7 +93,7 @@ setopt share_history
 alias bdate='date +%Y%m%d_%H%M%S'
 
 # Solarized MC
-export MC_SKIN=$HOME/.mc/solarized.ini
+export MC_SKIN=$HOME/.config/mc/skins/solarized.ini
 
 # Powerline 
 powerline-daemon -q
