@@ -53,7 +53,7 @@ plugins=(git autojump command-not-found history-substring-search gnu-utils web-s
 
 # User configuration
 
-export PATH="/home/ed/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/ed/.rvm/bin:/home/ed/bin:/usr/NX/bin:/home/ed/.rvm/bin:/home/ed/.rvm/bin:/home/ed/dev/android-studio/bin:$HOME/eclipse:$HOME/netbeans/bin:$HOME/idea/bin:/data/tmcbeans/bin:$HOME/.local/bin"
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/ed/.rvm/bin:/home/ed/bin:/usr/NX/bin:/home/ed/.rvm/bin:/home/ed/.rvm/bin:/home/ed/dev/android-studio/bin:$HOME/eclipse:$HOME/netbeans/bin:$HOME/idea/bin:/data/tmcbeans/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -92,9 +92,9 @@ setopt share_history
 
 alias bdate='date +%Y%m%d_%H%M%S'
 
-# Solarized MC (dark at the moment)
+# Solarized MC
 export MC_SKIN=$HOME/.mc/solarized.ini
 
 # Powerline 
-. /home/ed/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
+powerline-daemon -q
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
