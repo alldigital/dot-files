@@ -1,8 +1,7 @@
+set nocompatible
 syntax enable
 set background=dark
 colorscheme solarized
-execute pathogen#infect()
-" set runtimepath^=~/.vim/bundle/ctrlp.vi
 let g:airline_powerline_fonts = 1
 
 " Set to auto read when a file is changed from the outside
@@ -30,12 +29,6 @@ nmap <leader>s? :map <leader>s<cr>
 nnoremap j gj
 nnoremap k gk
 
-" Arrow key users won't survive in this environment
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
 
@@ -57,3 +50,32 @@ set wildignore=*.o,*~,*.pyc
 " "Always show current position
 set ruler
 "
+
+" open help in vertical split
+au BufWinEnter {*.txt} if 'help' == &ft | wincmd H | nmap q :q<CR> | endif
+
+
+" Scripts and Plugins " {{{
+filetype off
+runtime macros/matchit.vim
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#rc()
+
+Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle
+
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'bling/vim-airline'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'tpope/vim-vinegar.git'
+
+Plugin 'FuzzyFinder'
+Plugin 'L9'
+Plugin 'snipMate'
+
+Plugin 'matchit.zip'
+
+" End of plugins
+filetype plugin indent on      " Automatically detect file types.
