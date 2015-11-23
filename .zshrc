@@ -55,20 +55,12 @@ antigen theme alldigital/zsh-files themes/alldigital
 # Antigen Bundles
 #
 
-antigen bundle git
-antigen bundle tmuxinator
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle rupa/z
 
 
 # Load various lib files
 antigen bundle robbyrussell/oh-my-zsh lib/
-
-#
-# Antigen Theme
-#
-
-antigen theme alldigital/zsh-files themes/alldigital
 
 #
 # Antigen Bundles loaded
