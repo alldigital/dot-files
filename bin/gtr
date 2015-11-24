@@ -1,0 +1,5 @@
+#!/bin/bash
+gnome-terminal \
+--tab -t "6otd" --working-directory=$HOME  \
+--tab -t "travelgid" --working-directory=$HOME/Android \
+--tab -t "vps" --working-directory=$HOME
