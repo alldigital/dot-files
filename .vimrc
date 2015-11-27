@@ -76,6 +76,7 @@ Plugin 'L9'
 Plugin 'snipMate'
 
 Plugin 'matchit.zip'
+Plugin 'KevinGoodsell/vim-csexact'
 
 " End of plugins
 filetype plugin indent on      " Automatically detect file types.
