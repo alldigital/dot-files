@@ -2,6 +2,7 @@ set nocompatible
 syntax enable
 set background=dark
 colorscheme solarized
+set laststatus=2
 let g:airline_powerline_fonts = 1
 
 " Set to auto read when a file is changed from the outside
