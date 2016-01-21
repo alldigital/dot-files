@@ -81,6 +81,8 @@ mcview_eof=
 ignore_ftp_chattr_errors=true
 skin=default
 
+keymap=
+
 [Layout]
 message_visible=0
 keybar_visible=0
@@ -93,7 +95,7 @@ horizontal_split=1
 vertical_equal=1
 left_panel_size=71
 horizontal_equal=1
-top_panel_size=21
+top_panel_size=23
 
 [Misc]
 timeformat_recent=%b %e %H:%M
