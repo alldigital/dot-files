@@ -8,66 +8,39 @@ export LC_ALL=en_US.UTF-8
 # Ensure editor is set
 export EDITOR=vim
 
-#
-# OS Detection
-#
+# zplug plugin management
+source ~/.zplug/zplug
 
-UNAME=`uname`
-
-# Fallback info
-CURRENT_OS='Linux'
-DISTRO=''
-
-if [[ $UNAME == 'Darwin' ]]; then
-    CURRENT_OS='OS X'
-else
-    # Must be Linux, determine distro
-    if [[ -f /etc/redhat-release ]]; then
-        # CentOS or Redhat?
-        if grep -q "CentOS" /etc/redhat-release; then
-            DISTRO='CentOS'
-        else
-            DISTRO='RHEL'
-        fi
-    fi
+# zplug check return true if all plugins are installed
+# # Therefore, when it returns not true (thus false),
+# # run zplug install
+if ! zplug check; then
+    zplug install
 fi
 
-# Use zsh-completions if it exists
-if [[ -d "/usr/local/share/zsh-completions" ]]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
-fi
+# source and add to the PATH
+    zplug load
 
-# Load Antigen
-source ~/.antigen.zsh
+# Plugins
 
-antigen bundle alldigital/zsh-files
+# Let zplug manage inself
+zplug "b4b4r07/zplug"
 
-# Load various lib files
-antigen bundle robbyrussell/oh-my-zsh lib/
+# My own tweaks
+zplug "alldigital/zsh-files"
 
-#
-# Antigen Theme
-#
+# Substring search
+zplug "zsh-users/zsh-history-substring-search"
+ 
+# Support oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
 
-antigen theme alldigital/zsh-files themes/alldigital
+# Set priority to load command like a nice command
+# # e.g., zsh-syntax-highlighting must be loaded
+# # after executing compinit command and sourcing other plugins
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
-#
-# Antigen Bundles
-#
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle rupa/z
-
-
-# Load various lib files
-antigen bundle robbyrussell/oh-my-zsh lib/
-
-#
-# Antigen Bundles loaded
-#
-
-antigen apply
-
+zplug load --verbose
 
 # Powerline 
 powerline-daemon -q
