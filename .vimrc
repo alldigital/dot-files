@@ -80,4 +80,12 @@ Plugin 'matchit.zip'
 Plugin 'KevinGoodsell/vim-csexact'
 
 " End of plugins
+
+" Indenting options
+" Disable comment auto-indenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" enable auto indent
 filetype plugin indent on      " Automatically detect file types.
+" Keyboard binding for on the fly indent switching
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
+
