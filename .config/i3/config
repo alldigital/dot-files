@@ -242,14 +242,17 @@ bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
 bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
 
+# First, link the proper .i3status.conf
+exec $HOME/bin/i3status.sh &
+
 # use autolock for screen locking
 exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
 
 #exec wicd-client -t
 #exec gxneur &
-exec blueman-applet &
+#exec blueman-applet &
 #exec nm-applet&
-exec megasync &
+#exec megasync &
 #exec setxkbmap -option 'grp:ctrl_shift_toggle' "us,ru(winkeys)" &
 exec setxkbmap -option 'grp:alt_space_toggle' "us,ru(winkeys)" & 
 exec insync start &
