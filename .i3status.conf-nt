@@ -10,7 +10,7 @@ order += "volume master"
 order += "cpu_temperature 0"
 order += "cpu_usage"
 order += "battery 0"
-order += "wireless wlp8s0"
+order += "wireless wlp9s0"
 order += "ethernet enp7s0"
 order += "time"
 
@@ -27,7 +27,7 @@ disk "/data" {
         format = "/data: %avail"
 }
 
-wireless wlp8s0 {
+wireless wlp9s0 {
         format_up = "W: (%essid: %quality, %bitrate)"
         format_down = "W: down"
 }
