@@ -19,7 +19,8 @@ set $mod Mod4
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:DejaVu Sans Condensed 10
+#font pango:DejaVu Sans Condensed 10
+font pango:DejaVu Sans Mono 0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -56,6 +57,15 @@ assign [class="libreoffice"] 8
 assign [class="libreoffice-writer"] 8
 assign [class="Deluge"] 7
 
+# Layout
+for_window [class="(?i)feh"] floating enable
+for_window [class="(?i)gcolor2"] floating enable
+for_window [class="(?i)gbdfed"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+for_window [instance="(?i)TeamViewer.exe"] floating enable
+for_window [class="(?i)VirtualBox"] floating enable
+for_window [class="(?i)mplayer2"] floating enable
+for_window [instance="(?i)mplayer2"] floating enable
 
 #for_window [class="Guake"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -63,8 +73,10 @@ for_window [title="Calculator"] floating enable
 for_window [title="Calculator"] border 1pixel
 for_window [class="terminal"] border 1pixel
 for_window [class="termite"] border 1pixel
+for_window [class="terminator"] border 1pixel
 for_window [class="insync"] floating enable
 for_window [class="insync"] border 1pixel
+for_window [class="google-chrome"] border 1pixel
 
 # set Netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
