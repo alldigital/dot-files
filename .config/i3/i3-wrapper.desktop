@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=i3-wrapper
+Comment=improved dynamic tiling window manager
+Exec=i3-wrapper
+TryExec=i3-wrapper
+Type=Application
+X-LightDM-DesktopName=i3-wrapper
+DesktopNames=i3-wrapper
