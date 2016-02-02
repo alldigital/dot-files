@@ -3,7 +3,7 @@
 bar {
   position top
 #    i3bar_command i3bar
-	status_command i3status
+	status_command i3blocks -c ~/.i3blocks.conf
     tray_output VGA-1
     colors {
     separator #586e75
@@ -15,6 +15,6 @@ bar {
     urgent_workspace #77216f #77216f #ffffff
   }
 #  status_command python /home/ed/.local/lib/python2.7/site-packages/powerline/bindings/i3/powerline-i3.py
-    font pango:DejaVu Sans Condensed Bold 10
-    #font pango:PragmataPro for Powerline Bold 10
+    #font pango:DejaVu Sans Condensed Bold 10
+    font pango:PragmataPro for Powerline Bold 10
 }

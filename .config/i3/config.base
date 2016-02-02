@@ -235,9 +235,6 @@ bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
 bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
 
-# First, link the proper .i3status.conf
-# exec $HOME/bin/i3status.sh 
-
 # use autolock for screen locking
 exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
 
