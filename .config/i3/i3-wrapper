@@ -1,4 +1,5 @@
 #!/bin/bash
 cat $HOME/.config/i3/config.base \
     $HOME/.config/i3/config.`hostname` > $HOME/.config/i3/config
+ln -sf $HOME/.i3blocks.conf-`hostname` $HOME/.i3blocks.conf
 exec /usr/bin/i3
