@@ -34,8 +34,8 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-label=VOL
-#label=♪
+#label=VOL
+label=♪
 instance=Master
 #instance=PCM
 interval=5
@@ -71,6 +71,10 @@ label=/data
 instance=/data
 interval=10
 
+[disk]
+label=/home
+instance=/home
+interval=10
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
@@ -89,6 +93,7 @@ separator=false
 [bandwidth]
 #instance=eth0
 instance=enp0s25
+label=In
 interval=1
 
 # CPU usage
@@ -156,5 +161,5 @@ interval=5
 
 [keyindicator]
 instance=NUM
-interval=once
+interval=1
 signal=11
