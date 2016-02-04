@@ -36,6 +36,7 @@ markup=none
 [volume]
 #label=VOL
 label=♪
+#label=
 instance=Master
 #instance=PCM
 interval=5
