@@ -103,12 +103,12 @@ interval=1
 # see the script for details.
 [cpu_usage]
 label=CPU
-interval=10
+interval=5
 min_width=CPU: 100.00%
 #separator=false
 
 [load_average]
-interval=10
+interval=1
 
 # Battery indicator
 #
@@ -124,7 +124,7 @@ interval=30
 [time]
 #command=date '+%Y-%m-%d %H:%M:%S'
 command=date
-interval=5
+interval=1
 
 # Generic media player support
 #
