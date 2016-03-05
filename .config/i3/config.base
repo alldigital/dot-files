@@ -224,7 +224,8 @@ bindsym $mod+Control+Right workspace next
 
 # App shortcuts
 bindsym $mod+n exec nautilus --no-desktop
-bindsym $mod+g exec google-chrome-stable --proxy-pac-url="http://antizapret.prostovpn.org/proxy.pac"
+# bindsym $mod+g exec google-chrome-stable --proxy-pac-url="http://antizapret.prostovpn.org/proxy.pac"
+bindsym $mod+g exec firefox
 bindsym $mod+o exec LANG=ru_RU.UTF-8 libreoffice
 
 bindsym $mod+Next exec pactl set-sink-volume 0 -10%
