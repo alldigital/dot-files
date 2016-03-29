@@ -251,6 +251,7 @@ exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
 exec setxkbmap -option 'grp:alt_space_toggle' "us,ru(winkeys)" & 
 exec insync start &
 exec numlockx on &
+dunst -config ~/.config/dunst/dunstrc &
 
 client.focused #586e75 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #073642 #073642 #93a1a1 #002b36
