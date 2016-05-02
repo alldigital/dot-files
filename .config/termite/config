@@ -2,6 +2,7 @@
 
 [options]
 font = PragmataPro for Powerline 10
+# font = Roboto Mono for Powerline 10
 
 [colors]
 foreground = #839496
