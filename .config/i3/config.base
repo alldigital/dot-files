@@ -29,47 +29,47 @@ font pango:DejaVu Sans Mono 0
 floating_modifier $mod
 
 # Fancy names for workspaces
-set $w1 "1:"
-set $w2 "2:"
-set $w3 "3:"
-set $w4 "4:"
-set $w5 "5:"
-set $w6 "6:"
-set $w7 "7:"
-set $w8 "8:"
-set $w9 "9:"
-set $w10 "10:"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 set $default_gaps_inner 2
 set $default_gaps_outer 2
 gaps inner $default_gaps_inner
 gaps outer $default_gaps_outer
 
-workspace $w2 gaps inner 0
-workspace $w2 gaps outer 0
-workspace $w8 gaps inner 0
-workspace $w8 gaps outer 0
-workspace $w10 gaps inner 0
-workspace $w10 gaps outer 0
+workspace $ws2 gaps inner 0
+workspace $ws2 gaps outer 0
+workspace $ws8 gaps inner 0
+workspace $ws8 gaps outer 0
+workspace $ws10 gaps inner 0
+workspace $ws10 gaps outer 0
 
 ## Assign section
-#assign [class="^Google-chrome$"]      → $w2 
-#assign [title="^DownThemAll$"]  → $w1
-#assign [title="^Print$"]        → $w1
-#assign [class="Pidgin"]         → $w3
-#assign [class="Buddy List"]     → $w3
-#assign [class="^Thunderbird$"]  → $w3
-#assign [class="^libreoffice-startcenter$"]      	→ $w8
-#assign [class="^Netbeans$"]        → $w10
-#assign [class="^jetbrains-studio$"]        → $w10
-assign [class="Firefox"] 2
-assign [class="Google-chrome"] 2
-assign [title="Netbeans"] 10
-assign [class="jetbrains-idea"] 10
-assign [class="jetbrains-studio"] 10
-assign [class="libreoffice"] 8
-assign [class="libreoffice-writer"] 8
-assign [class="Deluge"] 7
+#assign [class="^Google-chrome$"]      → $ws2 
+#assign [title="^DownThemAll$"]  → $ws1
+#assign [title="^Print$"]        → $ws1
+#assign [class="Pidgin"]         → $ws3
+#assign [class="Buddy List"]     → $ws3
+#assign [class="^Thunderbird$"]  → $ws3
+#assign [class="^libreoffice-startcenter$"]      	→ $ws8
+#assign [class="^Netbeans$"]        → $ws10
+#assign [class="^jetbrains-studio$"]        → $ws10
+assign [class="Firefox"] $ws2
+assign [class="Google-chrome"] $ws2
+assign [title="Netbeans"] $ws10
+assign [class="jetbrains-idea"] $ws10
+assign [class="jetbrains-studio"] $ws10
+assign [class="libreoffice"] $ws8
+assign [class="libreoffice-writer"] $ws8
+assign [class="Deluge"] $ws7
 
 # Layout
 for_window [class="(?i)feh"] floating enable
@@ -168,28 +168,28 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace $w2
-bindsym $mod+3 workspace $w3
-bindsym $mod+4 workspace $w4
-bindsym $mod+5 workspace $w5
-bindsym $mod+6 workspace $w6
-bindsym $mod+7 workspace $w7
-bindsym $mod+8 workspace $w8
-bindsym $mod+9 workspace $w9
-bindsym $mod+0 workspace $w10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $w1
-bindsym $mod+Shift+2 move container to workspace $w2
-bindsym $mod+Shift+3 move container to workspace $w3
-bindsym $mod+Shift+4 move container to workspace $w4
-bindsym $mod+Shift+5 move container to workspace $w5
-bindsym $mod+Shift+6 move container to workspace $w6
-bindsym $mod+Shift+7 move container to workspace $w7
-bindsym $mod+Shift+8 move container to workspace $w8
-bindsym $mod+Shift+9 move container to workspace $w9
-bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
