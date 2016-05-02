@@ -42,19 +42,26 @@ instance=Master
 interval=1
 signal=10
 
+[brightness]
+label=    
+command=printf "%.0f " $(xbacklight -get)
+interval=10
+signal=2
+#border=#d79921
+
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
-[memory]
-label=Mem
-separator=false
-interval=30
+#[memory]
+#label=Mem
+#separator=false
+#interval=30
 
 [memory]
-label=Swap
+label=
 instance=swap
-separator=false
-interval=30
+#separator=false
+interval=10
 
 # Disk usage
 #
@@ -65,25 +72,33 @@ interval=30
 label=/
 instance=/
 #instance=/mnt/data
+separator=false
 interval=10
 
 [disk]
 label=/data
 instance=/data
+separator=false
+interval=10
+
+[disk]
+label=/space
+instance=/space
 interval=10
 
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
+#[iface]
 #instance=wlan0
-color=#00FF00
-interval=10
-separator=false
+#color=#00FF00
+#interval=10
+#separator=false
 
 [wifi]
 instance=wlp8s0
+label=
 interval=10
 separator=false
 
@@ -98,22 +113,19 @@ interval=1
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+label=
 interval=10
 min_width=CPU: 100.00%
-#separator=false
+separator=false
 
 [load_average]
+label=
 interval=10
 
-# Battery indicator
-#
-# The battery instance defaults to 0.
 [battery]
-#label=BAT
-label=⚡
-#instance=1
-interval=30
+command=$HOME/.scripts/battery.sh
+interval=10
+#border=#458588
 
 # Date Time
 #
