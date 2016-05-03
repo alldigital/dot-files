@@ -103,9 +103,9 @@ interval=10
 separator=false
 
 [bandwidth]
-#instance=eth0
+instance=eth0
+#instance=wlp8s0
 label=
-instance=wlp8s0
 interval=1
 
 # CPU usage
@@ -120,7 +120,7 @@ separator=false
 
 [load_average]
 label=
-interval=10
+interval=5
 
 [battery]
 command=$HOME/.scripts/battery.sh

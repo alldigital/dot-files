@@ -35,25 +35,32 @@ markup=none
 # See the script for details.
 [volume]
 #label=VOL
-label=♪
-#label=
+#label=♪
+label=
 instance=Master
 #instance=PCM
 interval=5
 signal=10
 
+[brightness]
+label=    
+command=printf "%.0f " $(xbacklight -get)
+interval=10
+signal=2
+#border=#d79921
+
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
-[memory]
-label=MEM
-separator=false
-interval=30
+#[memory]
+#label=MEM
+#separator=false
+#interval=30
 
 [memory]
-label=SWAP
+label=
 instance=swap
-separator=false
+#separator=false
 interval=30
 
 # Disk usage
@@ -65,17 +72,20 @@ interval=30
 label=/
 instance=/
 #instance=/mnt/data
+separator=false
 interval=10
 
 [disk]
 label=/data
 instance=/data
+separator=false
 interval=10
 
 [disk]
 label=/home
 instance=/home
 interval=10
+
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
@@ -94,7 +104,7 @@ separator=false
 [bandwidth]
 #instance=eth0
 instance=enp0s25
-label=In
+label=
 interval=1
 
 # CPU usage
@@ -102,27 +112,29 @@ interval=1
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+label=
 interval=5
 min_width=CPU: 100.00%
-#separator=false
+separator=false
 
 [load_average]
-interval=1
+label=
+interval=5
 
 # Battery indicator
 #
 # The battery instance defaults to 0.
-[battery]
-label=BAT
-label=⚡
+#[battery]
+#label=⚡
+#command=$HOME/.scripts/battery.sh
 #instance=1
-interval=30
+#interval=10
 
 # Date Time
 #
 [time]
 #command=date '+%Y-%m-%d %H:%M:%S'
+label=
 command=date
 interval=1
 
@@ -161,7 +173,7 @@ interval=1
 #interval=once
 #signal=11
 
-[keyindicator]
-instance=NUM
-interval=1
-signal=11
+#[keyindicator]
+#instance=NUM
+#interval=1
+#signal=11
