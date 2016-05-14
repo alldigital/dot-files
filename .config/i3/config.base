@@ -250,6 +250,11 @@ bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
 bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
 
+# Compton i3 lines
+# seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
+#exec --no-startup-id "compton -b"
+exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
+
 # use autolock for screen locking
 exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
 
@@ -259,7 +264,6 @@ exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
 #exec nm-applet&
 #exec megasync &
 #exec setxkbmap -option 'grp:ctrl_shift_toggle' "us,ru(winkeys)" &
-exec --no-startup-id compton -b
 exec setxkbmap -option 'grp:alt_space_toggle' "us,ru(winkeys)" & 
 exec insync start &
 exec numlockx on &

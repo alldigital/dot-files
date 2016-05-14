@@ -42,20 +42,20 @@ instance=Master
 interval=5
 signal=10
 
-[brightness]
-label=    
-command=printf "%.0f " $(xbacklight -get)
-interval=10
-signal=2
+#[brightness]
+#label=    
+#command=printf "%.0f " $(xbacklight -get)
+#interval=10
+#signal=2
 #border=#d79921
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
-#[memory]
-#label=MEM
-#separator=false
-#interval=30
+[memory]
+label=
+separator=false
+interval=5
 
 [memory]
 label=
