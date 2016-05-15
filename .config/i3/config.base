@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # First, link the proper .i3status.conf
-exec $HOME/bin/i3status.sh 
+#exec $HOME/bin/i3status.sh 
 
 set $mod Mod4
 
@@ -72,6 +72,10 @@ assign [class="libreoffice-writer"] $ws8
 assign [class="Deluge"] $ws7
 
 # Layout
+# No titlebar
+#
+for_window [class="^.*"] border 1pixel
+
 for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)gcolor2"] floating enable
 for_window [class="(?i)gbdfed"] floating enable

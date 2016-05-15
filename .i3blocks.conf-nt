@@ -59,7 +59,7 @@ interval=5
 [memory]
 label=
 instance=swap
-separator=false
+#separator=false
 interval=10
 
 # Disk usage
