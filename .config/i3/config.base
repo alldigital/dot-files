@@ -230,9 +230,9 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+t border toggle
 # lock screen
-bindsym $mod+Control+l exec i3lock
+bindsym $mod+Control+l exec i3lock-fancy
 # lock screen and suspend
-bindsym $mod+Control+s exec i3lock && dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+bindsym $mod+Control+s exec i3lock-fancy && dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 # switch workspaces by mod+ctrl+left/right
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
@@ -272,6 +272,7 @@ exec setxkbmap -option 'grp:alt_space_toggle' "us,ru(winkeys)" &
 exec insync start &
 exec numlockx on &
 exec dunst -config ~/.config/dunst/dunstrc &
+exec xautolock -time 10 -locker i3lock-fancy &
 
 client.focused #586e75 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #073642 #073642 #93a1a1 #002b36
