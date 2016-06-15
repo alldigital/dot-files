@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
 
 # This program is free software: you can redistribute it and/or modify
@@ -39,15 +38,12 @@ awk -v type=$TYPE '
 END {
 	# full text
 	if (type == "swap")
-		printf("%.1fG\n", (swap_total-swap_free) / 1048576)
+		printf("%.1fG\n", (swap_total-swap_free)/1024/1024)
 	else
-		printf("%.1fG\n", mem_free / 1048576)
+		printf("%.1fG\n", mem_free/1024/1024)
 
 	# TODO: short text
-	printf("\n")
 
 	# TODO: color (if less than X%)
-	if (mem_free < 1048576)
-		exit 33
 }
 ' /proc/meminfo
