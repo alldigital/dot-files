@@ -2,19 +2,20 @@
 # finds out, if available)
 bar {
   position top
-#    i3bar_command i3bar
 	status_command i3blocks -c ~/.i3blocks.conf
     tray_output LVDS1
-    colors {
-    separator #586e75
-    background #002b36
-    statusline #aea79f
-    focused_workspace #586e75 #586e75 #ffffff
-    active_workspace #073642 #073642 #ffffff
-    inactive_workspace #002b36 #002b36 #aea79f
-    urgent_workspace #77216f #77216f #ffffff
-  }
-#  status_command python /home/ed/.local/lib/python2.7/site-packages/powerline/bindings/i3/powerline-i3.py
-    #font pango:DejaVu Sans Condensed Bold 10
+
+    	colors {
+#		colorclass			border		background	text
+		separator			$base03
+		background			$base01
+		statusline			$base05
+
+		focused_workspace	$base0C		$base0C		$base07
+		active_workspace	$base02		$base02		$base07
+		inactive_workspace	$base01		$base01		$base05
+		urgent_workspace	$base0F		$base0F		$base07
+	}
+
     font pango:PragmataPro for Powerline Bold 10
 }
