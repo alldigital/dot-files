@@ -76,6 +76,6 @@ if ($status eq 'Discharging') {
 	} elsif ($percent < 75) {
 		print "$base16::base0A\n";
 	} else {
-		print "$base16::base0B\n";
+		print "$base16::base0C\n";
 	}
 }
