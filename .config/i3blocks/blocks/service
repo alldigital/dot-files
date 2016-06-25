@@ -1,0 +1,12 @@
+#!/bin/sh
+
+source $HOME/.config/i3blocks/base16.sh
+
+status=$(systemctl status $BLOCK_INSTANCE | grep -Po '(?<=Active: )\w+')
+
+# text
+echo "$status"
+echo "$status"
+
+# color
+[ "$status" = "active" ] && echo "$base0B" || echo "$base08"
