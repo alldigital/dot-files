@@ -24,8 +24,9 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME
-separator_block_width=15
+command=$HOME/.config/i3blocks/blocks/$BLOCK_NAME
+#command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=9
 markup=none
 
 # Volume indicator
@@ -52,7 +53,7 @@ signal=10
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=
+label=
 separator=false
 interval=5
 
@@ -60,7 +61,7 @@ interval=5
 label=
 instance=swap
 #separator=false
-interval=10
+interval=5
 
 # Disk usage
 #
@@ -91,9 +92,12 @@ separator=false
 
 [bandwidth]
 #instance=enp7s0
-instance=wlp9s0
-label=
+#instance=wlp9s0
+#label=
 interval=1
+align=center
+interval=1
+min_width=1023K  1023K
 
 #[iface]
 #instance=wlan0
@@ -108,7 +112,7 @@ interval=1
 [cpu_usage]
 label=
 interval=10
-min_width=CPU: 100.00%
+#min_width=CPU: 100.00%
 separator=false
 
 [load_average]
@@ -116,9 +120,10 @@ label=
 interval=5
 
 [battery]
-command=$HOME/.scripts/battery.sh
+#command=$HOME/.scripts/battery.sh
 interval=10
 #border=#458588
+
 # Date Time
 #
 [time]

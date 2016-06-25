@@ -105,7 +105,7 @@ interval=10
 separator=false
 
 [bandwidth]
-instance=enp7s0
+#instance=enp7s0
 #instance=wlp8s0
 align=center
 interval=1
