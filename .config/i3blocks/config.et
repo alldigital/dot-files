@@ -30,6 +30,11 @@ command=$HOME/.config/i3blocks/blocks/$BLOCK_NAME
 separator_block_width=9
 markup=none
 
+# Weather indocator
+[weather]
+instance=823674
+interval=60
+
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
