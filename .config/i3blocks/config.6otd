@@ -104,7 +104,7 @@ interval=10
 #interval=10
 #separator=false
 
-[bandwidth]
+#[bandwidth]
 #instance=eth0
 #instance=enp0s25
 #label=
