@@ -2,7 +2,7 @@
 # finds out, if available)
 bar {
   position top
-	status_command i3blocks -c ~/.config/i3blocks/config.et
+	status_command i3blocks -c ~/.config/i3blocks/config.nt
     tray_output LVDS-1
 
     	colors {
