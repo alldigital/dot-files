@@ -1,0 +1,1 @@
+/home/ed/.vim/.vimrc-light
