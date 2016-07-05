@@ -17,7 +17,7 @@ if [ -f $DARK ]; then
         rm -f $DARK
         git checkout light
         reload
-        nitify-send "Switched to light theme" 
+        notify-send "Switched to light theme" 
         notify-send "Vim and mc should be restarted"
 else
         # Light theme, switch to dark
