@@ -2,7 +2,7 @@
  
 DARK=$HOME/.dark
 
-if [ -f $DARK]; then
+if [ -f $DARK ]; then
 
         # Dark theme, switching to light
         cd $HOME
@@ -17,12 +17,14 @@ else
         touch $DARK
         git checkout dark
         reload
-        nitify-send "Switched to dark theme"
+        notify-send "Switched to dark theme"
         notify-send " Vim and mc should be restarted"
 fi
 
-reload() {
+function reload() {
         # Things to do on theme change
         killall -SIGUSR1 termite
+        cd $HOME/.config/i3
+        cat config.base config.`hostname` > config
         i3-msg reload
 }
