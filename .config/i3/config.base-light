@@ -371,6 +371,9 @@ bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
 bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
 
+# Switch dark/light theme
+bindsym $mod+BackSpace exec "~/.scripts/switch_theme.sh"
+
 # Compton i3 lines
 # seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
 #exec --no-startup-id "compton -b"
