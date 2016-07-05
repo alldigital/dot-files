@@ -28,4 +28,3 @@ else
         notify-send "Switched to dark theme"
         notify-send " Vim and mc should be restarted"
 fi
-
