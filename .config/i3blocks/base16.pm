@@ -1,1 +1,1 @@
-/home/ed/.base16/base16-solarized.dark.pm
+/home/ed/.base16/base16-solarized.light.pm
