@@ -1,1 +1,1 @@
-/home/ed/.vim/.vimrc-light
+/home/ed/.vim/.vimrc
