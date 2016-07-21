@@ -7,6 +7,7 @@ function reload() {
         killall -SIGUSR1 termite
         cd $HOME/.config/i3
         cat config.base config.`hostname` > config
+        xrdb ~/.Xresources
         i3-msg reload
 }
 
