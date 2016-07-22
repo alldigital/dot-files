@@ -35,6 +35,10 @@ markup=none
 instance=823674
 interval=60
 
+[temperature]
+label=
+interval=5
+
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
