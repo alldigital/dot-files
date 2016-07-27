@@ -1,1 +1,1 @@
-/home/ed/.vim/.vimrc-dark
+/home/ed/.vim/.vimrc
