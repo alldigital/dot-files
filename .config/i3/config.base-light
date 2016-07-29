@@ -255,7 +255,7 @@ mode "resize" {
 }
 
 set $mode_power power
-bindsym Mod1+Control+l mode "$mode_power"
+bindsym $mod+Control+l mode "$mode_power"
 mode "$mode_power" {
     bindsym l mode "default", exec --no-startup-id $HOME/.config/i3/i3exit lock
     bindsym e mode "default", exec --no-startup-id $HOME/.config/i3/i3exit logout
@@ -347,7 +347,7 @@ mode "$mode_brightness" {
 
 bindsym $mod+t border toggle
 # lock screen
-bindsym $mod+Control+l exec i3lock-fancy
+# bindsym $mod+Control+l exec i3lock-fancy
 # lock screen and suspend
 bindsym $mod+Control+s exec i3lock-fancy && dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 # switch workspaces by mod+ctrl+left/right
@@ -393,6 +393,8 @@ exec insync start &
 exec numlockx on &
 exec dunst -config ~/.config/dunst/dunstrc &
 exec --no-startup-id xautolock -time 10 -locker i3lock-fancy &
+exec --no-startup-id set r rate 400 25
+# exec --no-startup-id $HOME/config/i3/remap_capslock.sh 
 exec feh --bg-scale ~/.wallpaper/wallpaper.jpg
 
 client.focused $base02 $base02 $base07 $base0D
