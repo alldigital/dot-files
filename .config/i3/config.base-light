@@ -393,6 +393,7 @@ exec insync start &
 exec numlockx on &
 exec dunst -config ~/.config/dunst/dunstrc &
 exec --no-startup-id xautolock -time 10 -locker i3lock-fancy &
+exec xset r rate 400 25
 exec feh --bg-scale ~/.wallpaper/wallpaper.jpg
 
 client.focused $base02 $base02 $base07 $base0D
