@@ -111,6 +111,7 @@ for_window [instance="(?i)mplayer2"] floating enable
 #for_window [class="(?i)libreoffice"] floating enable
 for_window [class="(?i)Skype"] floating enable
 for_window [class="(?i)Wine"] floating enable
+for_window [class="FTerm"] floating enable
 
 #for_window [class="Guake"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -370,6 +371,9 @@ bindsym $mod+z move workspace to output left
 
 # Switch dark/light theme
 bindsym $mod+BackSpace exec "~/.scripts/switch_theme.sh"
+
+# Rofi cheatsheets
+bindsym $mod+c exec --no-startup-id i3-msg 'exec "$HOME/.config/i3/cht.sh"'
 
 # Compton i3 lines
 # seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
