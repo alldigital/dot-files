@@ -1,5 +1,6 @@
 #!/bin/bash
 cat $HOME/.config/i3/config.base \
+    $HOME/.config/i3/colors \
     $HOME/.config/i3/config.`hostname` > $HOME/.config/i3/config
 ln -sf $HOME/.config/i3blocks/config.`hostname` $HOME/.config/i3blocks/i3blocks.conf
 exec /usr/bin/i3
