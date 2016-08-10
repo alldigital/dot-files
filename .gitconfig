@@ -10,7 +10,7 @@
 [alias]
     	co = checkout
   	ec = config --global -e
-   	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	up = pull --rebase --autostash
         cob = checkout -b
 	cm = !git add -A && git commit -m
         save = !git add -A && git commit -m 'SAVEPOINT'

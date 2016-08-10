@@ -6,7 +6,7 @@ function reload() {
         # Things to do on theme change
         killall -SIGUSR1 termite
         cd $HOME/.config/i3
-        cat config.base config.`hostname` > config
+        cat config.base colors config.`hostname` > config
         xrdb ~/.Xresources
         i3-msg reload
 }
