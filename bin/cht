@@ -97,7 +97,7 @@ case $extension in
                 fi
 
                 if [ "$spawn" = "1" ]; then
-                        /usr/bin/x-terminal-emulator  --class="FTerm" -e '/bin/sh -c "'"$run"'"'
+                        /usr/bin/x-terminal-emulator  --class="FTerm" --geometry=800x480 -e '/bin/sh -c "'"$run"'"'
                 else
                         $run
                 fi
