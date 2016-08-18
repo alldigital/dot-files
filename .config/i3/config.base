@@ -329,7 +329,6 @@ bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
 # App shortcuts
-bindsym $mod+n exec nautilus --no-desktop
 bindsym $mod+g exec google-chrome-stable --proxy-pac-url="http://antizapret.prostovpn.org/proxy.pac"
 #bindsym $mod+g exec firefox
 bindsym $mod+o exec LANG=ru_RU.UTF-8 libreoffice
@@ -350,6 +349,8 @@ bindsym $mod+BackSpace exec "~/.scripts/switch_theme.sh"
 
 # Rofi cheatsheets
 bindsym $mod+c exec --no-startup-id i3-msg 'exec "$HOME/.config/i3/cht.sh"'
+# Notes
+bindsym $mod+n exec --no-startup-id i3-msg 'exec "$HOME/.config/i3/notes.sh"'
 
 # Compton i3 lines
 # seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
