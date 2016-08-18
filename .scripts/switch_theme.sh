@@ -27,7 +27,7 @@ if [ -f $DARK ]; then
         ln -sf $HOME/.config/termite/solarized-light $HOME/.config/termite/config
         reload
         notify-send "Switched to light theme" 
-        notify-send "Vim and mc should be restarted"
+        notify-send "Use set background in Vim and change appearance in mc to apply changes"
 else
         # Light theme, switch to dark
         cd $HOME
@@ -43,5 +43,5 @@ else
         ln -sf $HOME/.config/termite/solarized-dark $HOME/.config/termite/config
         reload
         notify-send "Switched to dark theme"
-        notify-send " Vim and mc should be restarted"
+        notify-send "Use set background in Vim and change appearance in mc to apply changes"
 fi
