@@ -56,7 +56,7 @@ values."
    dotspacemacs-additional-packages
    '(
      fontawesome
-     color-scheme-solarized
+     color-theme-solarized
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -116,11 +116,6 @@ values."
                          solarized
                          spacemacs-light
                          spacemacs-dark
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -275,6 +270,7 @@ you should place your code here."
   (global-linum-mode)
   (with-eval-after-load 'linum
     (linum-relative-toggle))
+  (load-theme 'solarized)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
