@@ -48,7 +48,6 @@ values."
      (ruby :variables ruby-version-manager 'rvm) 
      (clojure :variables clojure-enable-fancify-symbols t)
      (spacemacs-layouts :variables layouts-enable-autosave t layouts-autosave-delay 300)
-     ed
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -57,7 +56,7 @@ values."
    dotspacemacs-additional-packages
    '(
      fontawesome
-     solarized
+     color-scheme-solarized
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
