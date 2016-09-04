@@ -29,15 +29,10 @@ root: ~/
 
 windows:
   - ed@et:
-      layout: main-vertical
-      panes:
-        - mc
   - root@et: sudo su - root 
-  - ed: mc
+  - ed: 
   - Android:
         root: /data/Android
-        panes:
-            - mc
   - adb:
   - ed@6otd: ssh ed@6l
 #  - x2x: ssh -Y etl 'x2x -east -to :0'

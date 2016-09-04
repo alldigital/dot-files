@@ -7,7 +7,7 @@ windows:
   - proc:
       layout: tiled
       panes:
-        - htop
+        - htop -s 'PERCENT_CPU'
         - htop -s 'PERCENT_MEM'
         - clear; journalctl -alfp 3
   - net:
