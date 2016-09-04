@@ -19,7 +19,7 @@ list_notes()
 
     cd "$notes_dir"
     # Find notes files, remove the leading path name
-    find $notes_dir -type f | sort | sed 's/.*\///'
+    find . -type f | sort | sed 's/.*\///'
 }
 
 note=$( (list_notes) | rofi -dmenu -i -hide-scrollbar -p "Select notes file:")
