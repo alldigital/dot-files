@@ -32,7 +32,7 @@ windows:
   - root@nt: sudo su - root 
   - ed: mc
   - Android:
-        root: /data/Android
+#        root: /data/Android
   - adb:
 #  - x2x: ssh -Y etl 'x2x -east -to :0'
 #  - opi: ssh -L 8080:10.0.0.1:80 opil
