@@ -6,42 +6,30 @@ font = PragmataPro for Powerline 10
 # font = Hack 10
 
 [colors]
+foreground = #839496
+foreground_bold = #eee8d5
+#foreground_dim = #888888
+background = #002b36
+cursor = #93a1a1
 
-# special
-foreground      = #eceff1
-foreground_bold = #eceff1
-cursor          = #eceff1
-background      = #263238
+# if unset, will reverse foreground and background
+#highlight = #839496
 
-# black
-color0  = #263238
-color8  = #37474f
-
-# red
-color1  = #ff9800
-color9  = #ffa74d
-
-# green
-color2  = #8bc34a
-color10 = #9ccc65
-
-# yellow
-color3  = #ffc107
-color11 = #ffa000
-
-# blue
-color4  = #03a9f4
-color12 = #81d4fa
-
-# magenta
-color5  = #e91e63
-color13 = #ad1457
-
-# cyan
-color6  = #009688
-color14 = #26a69a
-
-# white
-color7  = #cfd8dc
-color15 = #eceff1
+# colors from color0 to color254 can be set
+color0 = #073642
+color1 = #dc322f
+color2 = #859900
+color3 = #b58900
+color4 = #268bd2
+color5 = #d33682
+color6 = #2aa198
+color7 = #eee8d5
+color8 = #002b36
+color9 = #cb4b16
+color10 = #586e75
+color11 = #657b83
+color12 = #839496
+color13 = #6c71c4
+color14 = #93a1a1
+color15 = #fdf6e3
 
