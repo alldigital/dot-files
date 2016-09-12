@@ -37,10 +37,7 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
-<<<<<<< HEAD
      ;; themes-megapack
-=======
->>>>>>> parent of 8bdac41... vim -> emacsclient in notes.sh
      eyebrowse
      yaml
      python
