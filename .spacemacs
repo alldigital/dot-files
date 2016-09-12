@@ -37,7 +37,10 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
+<<<<<<< HEAD
      ;; themes-megapack
+=======
+>>>>>>> parent of 8bdac41... vim -> emacsclient in notes.sh
      eyebrowse
      yaml
      python
@@ -272,7 +275,7 @@ you should place your code here."
   (global-linum-mode)
   (with-eval-after-load 'linum
     (linum-relative-toggle))
-  (load-theme 'solarized)
+  (load-theme 'material)
   ;; Org mode alternative bullets
   (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
   ;; All files in this directory should activate org-mode
