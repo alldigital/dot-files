@@ -19,12 +19,12 @@ list_notes()
 
     cd "$notes_dir"
     # Find notes files, remove the leading path name
-    find $notes_dir -type f | sort | sed 's/.*\///'
+    find . -type f | sort | sed 's/.*\///'
 }
 
 note=$( (list_notes) | rofi -dmenu -i -hide-scrollbar -p "Select notes file:")
 
 if [ -n "${note}" ]
 then
-    TERM=screen=256color termite --class="FTerm" --geometry=799x480 -e "vim "${notes_dir}/${note}""
+    TERM=screen=256color termite --class="FTerm" --geometry=799x480 -e "emacsclient -t "${notes_dir}/${note}""
 fi
