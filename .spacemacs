@@ -37,7 +37,7 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
-     themes-megapack
+     ;; themes-megapack
      eyebrowse
      yaml
      python
@@ -48,6 +48,7 @@ values."
      ruby-on-rails
      (ruby :variables ruby-version-manager 'rvm)
      (clojure :variables clojure-enable-fancify-symbols t)
+     (scala :variables scala-enable-eldoc t scala-auto-insert-asterisk-in-comments t)
      (spacemacs-layouts :variables layouts-enable-autosave t layouts-autosave-delay 300)
      )
    ;; List of additional packages that will be installed without being
@@ -309,6 +310,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#839496"])
+ '(cider-repl-display-help-banner nil)
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#657b83")
