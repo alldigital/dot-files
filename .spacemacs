@@ -300,7 +300,7 @@ you should place your code here."
           search-ring
           regexp-search-ring))
   ;; GNU Smalltalk mode
-  (autoload 'smalltalk-mode "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el" "" t)
+  (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
