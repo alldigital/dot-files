@@ -1,1 +1,1 @@
-/home/ed/.config/i3blocks/base16-solarized.dark.pm
+/home/ed/.base16/base16-solarized.dark.pm

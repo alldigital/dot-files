@@ -313,6 +313,7 @@ you should place your code here."
  '(ansi-color-names-vector
    ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#839496"])
  '(cider-repl-display-help-banner nil)
+ '(cider-repl-history-file "~/.lein/cider-repl-history")
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#657b83")
