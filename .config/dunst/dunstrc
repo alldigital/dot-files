@@ -121,7 +121,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # browser for opening urls in context menu
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/google-chrome-stable
 
 [frame]
     width = 0
@@ -134,13 +134,13 @@
     # xev might be helpful to find names for keys
 
     # close notification
-    close = mod1+m
+    close = mod1+shift+m
 
     # close all notifications
-    close_all = mod1+shift+m
+    close_all = mod1+shift+a
 
     # redisplay last message(s)
-    history = mod1+n
+    history = mod1+shift+n
 
     # context menu
     context = mod1+shift+i
