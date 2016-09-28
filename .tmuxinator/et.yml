@@ -32,7 +32,6 @@ windows:
   - root@et: sudo su - root 
   - ed: 
   - Android:
-        root: /data/Android
   - adb:
   - ed@6otd: ssh ed@6l
 #  - x2x: ssh -Y etl 'x2x -east -to :0'
