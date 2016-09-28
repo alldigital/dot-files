@@ -301,6 +301,13 @@ you should place your code here."
           regexp-search-ring))
   ;; GNU Smalltalk mode
   (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
+  ;; lisp wrap-around fix
+  (spacemacs/set-leader-keys "kw" nil)
+  (spacemacs/set-leader-keys "kw(" 'paredit-wrap-round)
+  (spacemacs/set-leader-keys "kw[" 'paredit-wrap-square)
+  (spacemacs/set-leader-keys "kw{" 'paredit-wrap-curly)
+  (spacemacs/set-leader-keys "kw<" 'paredit-wrap-angled)
+  (spacemacs/set-leader-keys "kwr" 'sp-rewrap-sexp)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
