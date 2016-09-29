@@ -270,6 +270,8 @@ you should place your code here."
   (when (display-graphic-p)
     (set-face-attribute 'default nil :font "PragmataPro for Powerline" :weight
                         'normal))
+
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
   ;; Add line numbers
   (global-linum-mode)
   (with-eval-after-load 'linum
@@ -302,6 +304,13 @@ you should place your code here."
           regexp-search-ring))
   ;; GNU Smalltalk mode
   (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
+
+  ;; Clojure additional settings
+
+  (with-eval-after-load 'clojure-mode
+    (put-clojure-indent 'cond #'indent-cond)
+    (set-face-italic 'clojure-keyword-face t))
+
   ;; lisp wrap-around fix
   (spacemacs/set-leader-keys "kw" nil)
   (spacemacs/set-leader-keys "kw(" 'paredit-wrap-round)
@@ -309,6 +318,40 @@ you should place your code here."
   (spacemacs/set-leader-keys "kw{" 'paredit-wrap-curly)
   (spacemacs/set-leader-keys "kw<" 'paredit-wrap-angled)
   (spacemacs/set-leader-keys "kwr" 'sp-rewrap-sexp)
+
+  ;; Paredit keybindings
+
+  (with-eval-after-load 'paredit
+    (message "Bindings for paredit")
+    (dolist (binding '(("C-<left>" . paredit-backward-slurp-sexp)
+                       ("C-<right>" . paredit-backward-barf-sexp)
+                       ("C-M-<left>" . paredit-forward-barf-sexp)
+                       ("C-M-<right>" . paredit-forward-slurp-sexp)
+                       ("M-<up>" . paredit-splice-sexp-killing-backward)
+                       ("M-<down>" . paredit-splice-sexp-killing-forward)))
+      (define-key paredit-mode-map (kbd (car binding)) (cdr binding))))
+
+  (with-eval-after-load 'smartparens
+    (message "Bindings for smartparens")
+    (dolist (binding '(("C-<left>" . sp-backward-slurp-sexp)
+                     ("C-<right>" . sp-backward-barf-sexp)
+                     ("C-M-<left>" . sp-forward-barf-sexp)
+                     ("C-," . sp-forward-barf-sexp)
+                     ("C-M-<right>" . sp-forward-slurp-sexp)
+                     ("C-." . sp-forward-slurp-sexp)
+                     ("M-<up>" . sp-splice-sexp-killing-backward)
+                     ("M-<down>" . sp-splice-sexp-killing-forward)
+                     (";" . (lambda ()
+                              (interactive)
+                              (if (member major-mode '(clojure-mode
+                                                       clojurescript-mode
+                                                       emacs-lisp-mode))
+                                  (sp-comment)
+                                (self-insert-command 1))))))
+    (define-key smartparens-mode-map (kbd (car binding)) (cdr binding))))
+
+  ;; Bunch of useful settings
+  (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
