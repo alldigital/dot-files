@@ -152,7 +152,8 @@ values."
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ":"
+   dotspacemacs-command-key "SPC"
+   ;; dotspacemacs-command-key ":"
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
@@ -291,7 +292,7 @@ you should place your code here."
   (setq delete-old-versions -1)
   (setq version-control t)
   (setq vc-make-backup-files t)
-  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+  (setq auto-save-file-name-transforms '((".*" "~/.emacs.local.d/auto-save-list/" t)))
   ;; History settings
   (setq savehist-file "~/.emacs.local.d/savehist")
   (savehist-mode 1)
