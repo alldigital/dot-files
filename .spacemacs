@@ -350,7 +350,7 @@ you should place your code here."
                                 (self-insert-command 1))))))
     (define-key smartparens-mode-map (kbd (car binding)) (cdr binding))))
 
-  ;; Bunch of useful settings
+  ;; Bunch of useful settings from internets
   (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
   )
 
