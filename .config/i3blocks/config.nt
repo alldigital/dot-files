@@ -31,7 +31,7 @@ markup=none
 
 # Weather indocator
 [weather]
-instance=823674
+instance=Dagomys,RU
 interval=60
 
 # Volume indicator
@@ -48,7 +48,7 @@ interval=1
 signal=10
 
 #[brightness]
-#label=    
+#label=  
 #command=printf "%.0f " $(xbacklight -get)
 #interval=10
 #signal=2
