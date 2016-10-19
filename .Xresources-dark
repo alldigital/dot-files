@@ -81,7 +81,7 @@ Xft.rgba: rgba
 
 ! URXVT Settings
 !
-
+URxvt.letterSpace: -1
 
 ! Fonts
 !
