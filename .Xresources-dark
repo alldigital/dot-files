@@ -95,15 +95,26 @@ URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:Pra
 ! URXVT ENABLE LINK SUPPORT
 !------------------------------------------------
 
-URxvt.perl-ext-common: default,matcher,tabbedex,vtwheel
+URxvt.perl-ext-common: default,matcher,tabbedex,vtwheel,selection-to-clipboard,pasta,clipboard,keyboard-select,url-select,font-size
 URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 !tabbed
 URxvt.matcher.button:   1
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.matcher.rend.0: Uline Italic
 
 !disable the fucking bell
 URxvt.insecure: 			false
 
+! clipboard
+! update clipboard whenever primary gets updated
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+!
 ! URXVT SCROLLBAR AND CURSOR STYLE
 !------------------------------------------------
 
@@ -124,6 +135,12 @@ URxvt.tabbedex.tab-fg:    	10
 URxvt.tabbedex.tab-bg:    	0
 URxvt.tabbedex.title: 		yes
 URxvt.tabbedex.new-button:  no
+
+! Font size
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase
+URxvt.keysym.C-0:     font-size:reset
+URxvt.keysym.C-9:     font-size:show
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
