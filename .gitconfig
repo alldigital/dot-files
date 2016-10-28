@@ -22,3 +22,6 @@
 	bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 [web]
 	browser = google-chrome
+[github]
+	oauth-token = c5e7a3d264937d9435651a7ecd670635a072fe31
+	user = alldigital

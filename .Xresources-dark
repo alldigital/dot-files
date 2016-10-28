@@ -95,7 +95,7 @@ URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:Pra
 ! URXVT ENABLE LINK SUPPORT
 !------------------------------------------------
 
-URxvt.perl-ext-common: default,matcher,tabbedex,vtwheel,selection-to-clipboard,pasta,clipboard,keyboard-select,url-select,font-size
+URxvt.perl-ext-common: default,matcher,vtwheel,selection-to-clipboard,pasta,clipboard,keyboard-select,url-select,font-size
 URxvt.url-launcher: /usr/bin/google-chrome-stable
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
