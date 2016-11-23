@@ -7,6 +7,10 @@ exec /home/ed/bin/print_to_6otd &
 # T430 specific stuff
 
 
+# Toggle TouchPad
+bindsym $mod+i exec /home/ed/bin/touchpad.sh
+
+# Physical TP suspend button
 bindsym XF86Launch1 exec bash -c 'sudo pm-suspend'
 
 # Audio Control
