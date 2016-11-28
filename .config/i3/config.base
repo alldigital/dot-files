@@ -373,6 +373,7 @@ exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g
 #exec setxkbmap -option 'grp:ctrl_shift_toggle' "us,ru(winkeys)" &
 exec setxkbmap -option 'grp:alt_space_toggle' "us,ru(winkeys)" &
 exec xcape -e 'Control_L=Escape'
+exec xcape -e 'Control_R=Escape'
 exec insync start &
 exec numlockx on &
 exec dunst -config ~/.config/dunst/dunstrc &

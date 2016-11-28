@@ -1,1 +1,1 @@
-/home/ed/.base16/base16-solarized.dark.sh
+/home/ed/.config/i3blocks/base16-solarized.dark.sh

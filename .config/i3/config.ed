@@ -4,6 +4,9 @@
 # Print pdf files to 6otd (Virtual printer)
 exec /home/ed/bin/print_to_6otd &
 
+# Capslock is Backspace
+exec setxkbmap -option "caps:backspace" &
+
 # T430 specific stuff
 
 
