@@ -106,6 +106,8 @@ URxvt.matcher.rend.0: Uline Italic
 
 !disable the fucking bell
 URxvt.insecure: 			false
+URxvt*urgentOnBell: false
+URxvt*visualBell: true
 
 ! clipboard
 ! update clipboard whenever primary gets updated

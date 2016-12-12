@@ -1,0 +1,27 @@
+xkb_keymap {
+	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+	xkb_types     { include "complete"	};
+	xkb_compat    { include "complete"	};
+	xkb_symbols   {
+                include "pc+us+ru:2+inet(evdev)"
+                include "group(alt_space_toggle)"
+
+                //key <TLDE> { [ asciitilde, grave ] };
+
+                key <CAPS> { [ ISO_Level3_Shift ] };
+
+                key <AD07> {    [   u,  U,  Prior   ]   };
+                key <AD08> {    [   i,  I,  Home    ]   };
+                key <AD09> {    [   o,  O,  Next    ]   };
+                key <AB08> {    [   comma,  less,  End     ]   };
+
+                //hjkl
+                //Ctrl + hjkl
+                key <AC06> {    [   h,  H,  Left    ]   };
+                key <AC07> {    [   j,  J,  Down    ]   };
+                key <AC08> {    [   k,  K,  Up      ]   };
+                key <AC09> {    [   l,  L,  Right   ]   };
+
+                };
+	xkb_geometry  { include "pc(pc105)"	};
+};
