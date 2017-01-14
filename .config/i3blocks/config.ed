@@ -36,7 +36,7 @@ instance=Dagomys,RU
 interval=60
 
 [temperature]
-label=
+label=
 interval=5
 
 # Volume indicator
@@ -86,11 +86,11 @@ instance=/
 separator=false
 interval=10
 
-#[disk]
-#label=/data
-#instance=/data
-#separator=false
-#interval=10
+[disk]
+label=/data
+instance=/data
+separator=false
+interval=10
 
 #[disk]
 #label=/space
