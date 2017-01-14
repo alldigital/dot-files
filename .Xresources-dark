@@ -86,10 +86,10 @@ URxvt.letterSpace: -1
 ! Fonts
 !
 
-URxvt.font: xft:PragmataPro for Powerline:size=11,xft:PragmataPro:size=11
-URxvt.boldFont: xft:PragmataPro for Powerline:bold:size=11,xft:PragmataPro:bold:size=11
-URxvt.italicFont: xft:PragmataPro for Powerline:italic:size=11,xft:PragmataPro:italic:size=11
-URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:PragmataPro:bold:italic:size=11
+URxvt.font: xft:PragmataPro for Powerline:size=11,xft:PragmataPro for Powerline:size=11
+URxvt.boldFont: xft:PragmataPro for Powerline:bold:size=11,xft:PragmataPro for Powerline:bold:size=11
+URxvt.italicFont: xft:PragmataPro for Powerline:italic:size=11,xft:PragmataPro for Powerline:italic:size=11
+URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:PragmataPro for Powerline:bold:italic:size=11
 
 
 ! URXVT ENABLE LINK SUPPORT
