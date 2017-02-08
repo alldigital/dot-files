@@ -16,3 +16,4 @@ windows:
         - sudo iftop -i any
         - watch -n 3 'netstat -t | grep -v LISTEN'
 
+  - cmd:
