@@ -17,5 +17,5 @@ bar {
 		urgent_workspace	$base0F		$base0F		$base07
 	}
 
-    font pango:PragmataPro for Powerline Bold 10
+    font pango:PragmataPro for Powerline 10
 }
