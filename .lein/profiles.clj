@@ -10,4 +10,5 @@
                   [com.jakemccrary/lein-test-refresh "0.17.0"]
                   [lein-try "0.4.3"]
                   [lein-kibit "0.1.3"]
-                  [lein-deps-tree "0.1.2"]]}}
+                  [lein-deps-tree "0.1.2"]
+                  [lein-cljfmt "0.5.6"]]}}
