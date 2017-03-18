@@ -4,8 +4,8 @@ inotifywait -m /var/spool/cups-pdf/ed -e create -e moved_to |
     while read path action file; do
         echo "The file '$file' appeared in directory '$path' via '$action', will be printed on 6otd" >> /home/ed/print_to_6otd.log
         # do something with the file
-        sleep 60
         scp -q $path$file ed@6otd:/home/ed/tmp 
         ssh ed@6otd "lpr /home/ed/tmp/$file"
+        ssh ed@6otd "rm -f /home/ed/tmp/$file"
     done
 
