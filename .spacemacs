@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     elm
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -65,6 +66,7 @@ values."
      clojure-snippets
      dockerfile-mode
      magithub
+     ;; (org-protocol-capture-html :local (recipe :fetcher github :repo "alphapapa/org-protocol-capture-html"))
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -277,6 +279,11 @@ you should place your code here."
     (set-face-attribute 'default nil :font "PragmataPro for Powerline" :weight
                         'normal))
 
+  ;; org-protocol
+  (require 'org-protocol)
+  ;; (require 'org-protocol-capture-html)
+
+
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
   ;; Add line numbers
   (global-linum-mode)
@@ -308,8 +315,93 @@ you should place your code here."
         '(kill-ring
           search-ring
           regexp-search-ring))
+
   ;; GNU Smalltalk mode
   (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
+
+  ;; Org Capture
+
+  ;; Kill the frame if one was created for the capture
+  (defvar kk/delete-frame-after-capture 0 "Whether to delete the last frame after the current capture")
+
+  (defun kk/delete-frame-if-neccessary (&rest r)
+    (cond
+     ((= kk/delete-frame-after-capture 0) nil)
+     ((> kk/delete-frame-after-capture 1)
+      (setq kk/delete-frame-after-capture (- kk/delete-frame-after-capture 1)))
+     (t
+      (setq kk/delete-frame-after-capture 0)
+      (delete-frame))))
+
+  (advice-add 'org-capture-finalize :after 'kk/delete-frame-if-neccessary)
+  (advice-add 'org-capture-kill :after 'kk/delete-frame-if-neccessary)
+  (advice-add 'org-capture-refile :after 'kk/delete-frame-if-neccessary)
+
+  ;; From http://www.diegoberrocal.com/blog/2015/08/19/org-protocol/
+
+  (defadvice org-capture
+      (after make-full-window-frame activate)
+    "Advise capture to be the only window when used as a popup"
+    (if (equal "emacs-capture" (frame-parameter nil 'name))
+        (delete-other-windows)))
+
+  (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+    "Advise capture-finalize to close the frame"
+    (if (equal "emacs-capture" (frame-parameter nil 'name))
+        (delete-frame)))
+
+  ;; Capture support functions
+
+
+  ;; ######################################################
+  ;; replaces URL with Org-mode link including description
+  ;; see id:2014-03-09-inbox-to-bookmarks
+  (defun my-www-get-page-title (url)
+    "retrieve title of web page. from: http://www.opensubscriber.com/message/help-gnu-emacs@gnu.org/14332449.html"
+    (let ((title))
+      (with-current-buffer (url-retrieve-synchronously url)
+        (goto-char (point-min))
+        (re-search-forward "<title>\\([^<]*\\)</title>" nil t 1)
+        (setq title (match-string 1))
+        (goto-char (point-min))
+        (re-search-forward "charset=\\([-0-9a-zA-Z]*\\)" nil t 1)
+        (decode-coding-string title (intern (match-string 1)))))
+    )
+
+
+  (defun my-url-linkify ()
+    "Make URL at cursor point into an Org-mode link.
+If there's a text selection, use the text selection as input.
+
+Example: http://example.com/xyz.htm
+becomes
+\[\[http://example.com/xyz.htm\]\[Source example.com\]\]
+
+Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
+    (interactive)
+    (let (resultLinkStr bds p1 p2 domainName)
+      ;; get the boundary of URL or text selection
+      (if (region-active-p)
+	  (setq bds (cons (region-beginning) (region-end)) )
+	(setq bds (bounds-of-thing-at-point 'url))
+	)
+      ;; set URL
+      (setq p1 (car bds))
+      (setq p2 (cdr bds))
+      (let (
+	    (url (buffer-substring-no-properties p1 p2))
+	    )
+	;; retrieve title
+	(let ((title (my-www-get-page-title url)))
+	  (message (concat "title is: " title))
+	  ;;(setq url (replace-regexp-in-string "&" "&amp;" url))
+	  (let ((resultLinkStr (concat "[[" url "][" title "]]")))
+	    ;; delete url and insert the link
+	    (delete-region p1 p2)
+	    (insert resultLinkStr)
+	    )
+	  ))))
 
   ;; Clojure additional settings
 
@@ -374,6 +466,7 @@ you should place your code here."
  '(cider-show-error-buffer nil)
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-mode t nil (cua-base))
  '(cua-normal-cursor-color "#657b83")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
@@ -411,15 +504,88 @@ you should place your code here."
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(org-agenda-files (quote ("~/.notes/todo")))
+ '(org-agenda-files
+   (quote
+    ("~/org/gcal.org" "~/.notes/archlinux.org" "~/.notes/todo.org")))
+ '(org-capture-templates
+   (quote
+    (("a" "Appointment" entry
+      (file "~/org/gcal.org" "Appointments")
+      "* TODO %?
+:PROPERTIES:
+
+:END:
+DEADLINE: %^T
+ %i
+")
+     ("n" "Note" entry
+      (file+headline "~/org/notes.org" "Notes")
+      "* Note %?
+%x
+%T")
+     ("N" "Note with clipboard" entry
+      (file+headline "notes.org" "Unsorted Notes")
+      "* %^{Title}
+Source: %U
+#+BEGIN_QUOTE
+%x
+#+END_QUOTE")
+     ("w" "Web site" entry
+      (file+olp "~/org/internet.org" "Web")
+      "* %c :website:
+%U %?%:initial" :immediate-finish nil)
+     ("L" "Protocol Link" entry
+      (file+headline
+       (\,
+        (concat org-directory "notes.org"))
+       "Inbox")
+      "* %? [[%:link][%:description]]
+Captured On: %U")
+     ("l" "Temp Links from the interwebs" item
+      (file+headline "links.org" "Temporary Links")
+      "%?
+Entered on %U
+ %i
+ %a")
+     ("b" "Capture link over org-protocol" entry
+      (file+headline "bookmarks.org" "Bookmark inbox")
+      "** %:description
+   [[%:link][%:link]]
+   CREATED: %U
+
+   %i" :empty-lines 1 :immediate-finish 1)
+     ("t" "Capture todo over org-protocol" entry
+      (file+headline "agenda.org" "Future tasks")
+      "** TODO %:link
+   CREATED: %U
+   SOURCE: %:description
+
+   %:initial" :prepend t :empty-lines 1 :immediate-finish 1)
+     ("i" "Capture an idea over org-protocol" entry
+      (file+headline "ideas.org" "Ideas")
+      "** TODO %:link
+   CREATED: %U
+   SOURCE: %:description
+
+   %:initial" :prepend t :empty-lines 1 :immediate-finish 1))))
+ '(org-todo-keyword-faces
+   (quote
+    (("TODO" . "black")
+     ("IN-PROGRESS" . "green")
+     ("WAITING" . "blue")
+     ("DONE" :foreground "white" :weight bold)
+     ("CANCELLED" :foreground "purple" :weight bold :strike-through t))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "CANCELLED" "DONE"))))
  '(package-selected-packages
    (quote
-    (packed avy haml-mode magithub bind-key tern bind-map org scala-mode inflections seq highlight request magit-popup pcre2el minitest hide-comnt powerline spinner peg multiple-cursors clojure-mode anzu undo-tree async yasnippet inf-ruby dash dockerfile-mode phpunit phpcbf php-extras php-auto-yasnippets nginx-mode magit-gh-pulls github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht drupal-mode php-mode diff-hl pug-mode yapfify uuidgen py-isort ox-gfm org-projectile org-download mwim livid-mode skewer-mode simple-httpd live-py-mode link-hint git-link flyspell-correct-helm flyspell-correct evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump company-emacs-eclim column-enforce-mode rake js2-mode iedit sbt-mode hydra cider auto-complete anaconda-mode smartparens flycheck company projectile helm helm-core markdown-mode alert magit git-commit with-editor f s package-build evil clojure-snippets yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pip-requirements persp-mode paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file noflet neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fontawesome flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu ensime emmet-mode elisp-slime-nav eclim disaster define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda command-log-mode color-theme-solarized coffee-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (flycheck-elm elm-mode packed avy haml-mode magithub bind-key tern bind-map org scala-mode inflections seq highlight request magit-popup pcre2el minitest hide-comnt powerline spinner peg multiple-cursors clojure-mode anzu undo-tree async yasnippet inf-ruby dash dockerfile-mode phpunit phpcbf php-extras php-auto-yasnippets nginx-mode magit-gh-pulls github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht drupal-mode php-mode diff-hl pug-mode yapfify uuidgen py-isort ox-gfm org-projectile org-download mwim livid-mode skewer-mode simple-httpd live-py-mode link-hint git-link flyspell-correct-helm flyspell-correct evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump company-emacs-eclim column-enforce-mode rake js2-mode iedit sbt-mode hydra cider auto-complete anaconda-mode smartparens flycheck company projectile helm helm-core markdown-mode alert magit git-commit with-editor f s package-build evil clojure-snippets yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pip-requirements persp-mode paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file noflet neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fontawesome flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu ensime emmet-mode elisp-slime-nav eclim disaster define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda command-log-mode color-theme-solarized coffee-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
- '(select-enable-clipboard t)
+ '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
  '(term-default-bg-color "#fdf6e3")

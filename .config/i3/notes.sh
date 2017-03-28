@@ -26,5 +26,5 @@ note=$( (list_notes) | rofi -dmenu -i -hide-scrollbar -p "Select notes file:")
 
 if [ -n "${note}" ]
 then
-    TERM=screen=256color termite --class="FTerm" --geometry=800x480 -e "emacsclient -t "${notes_dir}/${note}""
+    TERM=screen-256color termite --class="FTerm" --geometry=800x480 -e "emacsclient -t "${notes_dir}/${note}""
 fi

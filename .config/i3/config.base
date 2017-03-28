@@ -105,6 +105,9 @@ for_window [class="insync"] floating enable
 for_window [class="insync"] border 1pixel
 for_window [class="google-chrome"] border 1pixel
 
+# emacs client
+for_window [instance="emacs-capture"] floating enable
+
 # set Netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] border none
@@ -358,6 +361,8 @@ bindsym $mod+BackSpace exec "~/.scripts/switch_theme.sh"
 bindsym $mod+c exec --no-startup-id i3-msg 'exec "$HOME/.config/i3/cht.sh"'
 # Notes
 bindsym $mod+n exec --no-startup-id i3-msg 'exec "$HOME/.config/i3/notes.sh"'
+# Capture
+bindsym $mod+Shift+n       exec ~/bin/emacs-capture --eval '(org-capture nil "l")'
 
 # Compton i3 lines
 # seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
