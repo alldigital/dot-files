@@ -129,6 +129,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         material
                          solarized
                          spacemacs-light
                          spacemacs-dark
@@ -272,6 +273,14 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq-default evil-escape-key-sequence "jk")
+
+  (when (eq system-type 'gnu/linux)
+    ;; tweak for using brew emacs (not emacs-mac which doesn't support running
+    ;; in a terminal)
+    (setq browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "google-chrome")
+    )
   )
 
 (defun dotspacemacs/user-config ()
