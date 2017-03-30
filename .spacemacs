@@ -18,7 +18,6 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     elm
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -26,34 +25,41 @@ values."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
-     emacs-lisp
-     c-c++
-     java
-     git
-     github
-     version-control
-     markdown
-     (org :variables org-enable-github-support t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
-     ;; themes-megapack
-     yaml
-     python
-     php
-     lua
-     html
-     command-log
-     nginx
+     ;; Programming languages
+     c-c++
+     elm
+     emacs-lisp
+     haskell
+     java
      javascript
+     lua
+     php
+     python
      ruby-on-rails
+     rust
      (ruby :variables ruby-version-manager 'rvm)
      (clojure :variables clojure-enable-fancify-symbols t)
      (scala :variables scala-enable-eldoc t scala-auto-insert-asterisk-in-comments t)
+     ;; Version control
+     git
+     github
+     version-control
+     ;; Markup
+     ansible
+     command-log
+     csv
+     docker
+     html
+     markdown
+     nginx
+     yaml
+     (org :variables org-enable-github-support t)
      (spacemacs-layouts :variables layouts-enable-autosave t layouts-autosave-delay 300)
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -317,25 +323,25 @@ you should place your code here."
           regexp-search-ring))
 
   ;; GNU Smalltalk mode
-  (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
+  ;; (load-file "/usr/share/emacs/site-lisp/site-start.d/smalltalk-mode-init.el")
 
   ;; Org Capture
 
   ;; Kill the frame if one was created for the capture
-  (defvar kk/delete-frame-after-capture 0 "Whether to delete the last frame after the current capture")
+  (defvar ed/delete-frame-after-capture 0 "Whether to delete the last frame after the current capture")
 
-  (defun kk/delete-frame-if-neccessary (&rest r)
+  (defun ed/delete-frame-if-neccessary (&rest r)
     (cond
-     ((= kk/delete-frame-after-capture 0) nil)
-     ((> kk/delete-frame-after-capture 1)
-      (setq kk/delete-frame-after-capture (- kk/delete-frame-after-capture 1)))
+     ((= ed/delete-frame-after-capture 0) nil)
+     ((> ed/delete-frame-after-capture 1)
+      (setq ed/delete-frame-after-capture (- ed/delete-frame-after-capture 1)))
      (t
-      (setq kk/delete-frame-after-capture 0)
+      (setq ed/delete-frame-after-capture 0)
       (delete-frame))))
 
-  (advice-add 'org-capture-finalize :after 'kk/delete-frame-if-neccessary)
-  (advice-add 'org-capture-kill :after 'kk/delete-frame-if-neccessary)
-  (advice-add 'org-capture-refile :after 'kk/delete-frame-if-neccessary)
+  (advice-add 'org-capture-finalize :after 'ed/delete-frame-if-neccessary)
+  (advice-add 'org-capture-kill :after 'ed/delete-frame-if-neccessary)
+  (advice-add 'org-capture-refile :after 'ed/delete-frame-if-neccessary)
 
   ;; From http://www.diegoberrocal.com/blog/2015/08/19/org-protocol/
 
@@ -519,13 +525,12 @@ DEADLINE: %^T
  %i
 ")
      ("n" "Note" entry
-      (file+headline "~/org/notes.org" "Notes")
-      "* Note %?
-%x
+      (file+headline "~/org/notes.org" "Unsorted Notes")
+      "*  %?
 %T")
-     ("N" "Note with clipboard" entry
+     ("N" "Note with clipboard contents" entry
       (file+headline "notes.org" "Unsorted Notes")
-      "* %^{Title}
+      "*  %?
 Source: %U
 #+BEGIN_QUOTE
 %x
@@ -541,12 +546,9 @@ Source: %U
        "Inbox")
       "* %? [[%:link][%:description]]
 Captured On: %U")
-     ("l" "Temp Links from the interwebs" item
-      (file+headline "links.org" "Temporary Links")
-      "%?
-Entered on %U
- %i
- %a")
+     ("l" "Link" entry
+      (file+headline "links.org" "Unsorted Links")
+"* %? %^L %^g \n%T" :prepend t)
      ("b" "Capture link over org-protocol" entry
       (file+headline "bookmarks.org" "Bookmark inbox")
       "** %:description
