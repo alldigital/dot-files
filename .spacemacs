@@ -345,9 +345,6 @@ you should place your code here."
     "oa" 'org-agenda
     "od" 'ed/org-agenda-day
     "oc" 'org-capture
-    "ol" 'org-store-link
-    "oj" 'org-clock-jump-to-current-clock
-    "og" 'org-clock-goto
     )
 
   (defun ed/org-agenda-day ()
@@ -406,8 +403,27 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
   ;; Org Capture
   (defun ed/configure-org-capture ()
 
-  ;; Capture support functions
+    ;; Capture support functions
 
+    ;; Capture templates
+
+    (setq org-capture-templates
+          (quote (
+                  ("a" "Appointment" entry (file+headline "gcal.org" "Appointments")
+                   "* TODO  %?\nAppointment created: %U\nDeadline: %^T\n%a\n" :prepend t)
+                  ("l" "Link" entry (file+headline "links.org" "Unsorted Links")
+                  "* %? %^L %^g \n%T" :prepend t)
+                  ("n" "Note" entry (file+headline org-default-notes-file "Unsorted Notes")
+                   "*  %? :NOTE:\n%U\n%a\n" :prepend t)
+                  ("N" "Note with clipboard contents" entry (file+headline org-default-notes-file "Unsorted Notes")
+                   "*  %? :NOTE:\n%U\n#+BEGIN_QUOTE\n%x\n#+END_QUOTE\n" :prepend t)
+                  ("t" "Todo" entry (file+headline org-default-notes-file "Unsorted Todo")
+                   "* TODO %?\n%U\n%a\n" :prepend t)
+                  ("m" "Movies to see" entry (file+headline "movies.org" "To Download")
+                   "* ToDownload %? \n  :PROPERTIES:\n  :DATE: %t\n  :URL: %c\n  :END:")
+                  ("i" "idea" entry (file org-default-notes-file)
+                   "* %? :IDEA:\n%U\n%a\n")
+                  )))
   )
 
   ;; Clojure additional settings
@@ -463,6 +479,16 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     (require 'org-checklist)
     (ed/configure-org-capture)
 
+    ;; Org file paths
+    (setq ed/home-dir (expand-file-name "~"))
+    (setq org-directory (concat ed/home-dir "/org"))
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+    ;; agenda
+
+    (setq org-agenda-files (list org-directory))
+    (setq org-agenda-skip-scheduled-if-done t)
+    (setq org-agenda-skip-deadline-if-done t)
 
     ;; keybindings
     (spacemacs/set-leader-keys-for-major-mode 'org-mode "z" 'org-add-note)
@@ -539,67 +565,6 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(org-agenda-files
-   (quote
-    ("~/org/gcal.org" "~/.notes/archlinux.org" "~/.notes/todo.org")))
- '(org-capture-templates
-   (quote
-    (("a" "Appointment" entry
-      (file "~/org/gcal.org" "Appointments")
-      "* TODO %?
-:PROPERTIES:
-
-:END:
-DEADLINE: %^T
- %i
-")
-     ("n" "Note" entry
-      (file+headline "~/org/notes.org" "Unsorted Notes")
-      "*  %?
-%T")
-     ("N" "Note with clipboard contents" entry
-      (file+headline "notes.org" "Unsorted Notes")
-      "*  %?
-Source: %U
-#+BEGIN_QUOTE
-%x
-#+END_QUOTE")
-     ("w" "Web site" entry
-      (file+olp "~/org/internet.org" "Web")
-      "* %c :website:
-%U %?%:initial" :immediate-finish nil)
-     ("L" "Protocol Link" entry
-      (file+headline
-       (\,
-        (concat org-directory "notes.org"))
-       "Inbox")
-      "* %? [[%:link][%:description]]
-Captured On: %U")
-     ("l" "Link" entry
-      (file+headline "links.org" "Unsorted Links")
-      "* %? %^L %^g
-%T" :prepend t)
-     ("b" "Capture link over org-protocol" entry
-      (file+headline "bookmarks.org" "Bookmark inbox")
-      "** %:description
-   [[%:link][%:link]]
-   CREATED: %U
-
-   %i" :empty-lines 1 :immediate-finish 1)
-     ("t" "Capture todo over org-protocol" entry
-      (file+headline "agenda.org" "Future tasks")
-      "** TODO %:link
-   CREATED: %U
-   SOURCE: %:description
-
-   %:initial" :prepend t :empty-lines 1 :immediate-finish 1)
-     ("i" "Capture an idea over org-protocol" entry
-      (file+headline "ideas.org" "Ideas")
-      "** TODO %:link
-   CREATED: %U
-   SOURCE: %:description
-
-   %:initial" :prepend t :empty-lines 1 :immediate-finish 1))))
  '(package-selected-packages
    (quote
     (intero flycheck-haskell company-ghci company-ghc ghc toml-mode racer jinja2-mode hlint-refactor hindent helm-hoogle haskell-snippets flycheck-rust docker tablist docker-tramp csv-mode haskell-mode company-cabal cmm-mode cargo rust-mode ansible-doc ansible flycheck-elm elm-mode packed avy haml-mode magithub bind-key tern bind-map org scala-mode inflections seq highlight request magit-popup pcre2el minitest hide-comnt powerline spinner peg multiple-cursors clojure-mode anzu undo-tree async yasnippet inf-ruby dash dockerfile-mode phpunit phpcbf php-extras php-auto-yasnippets nginx-mode magit-gh-pulls github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht drupal-mode php-mode diff-hl pug-mode yapfify uuidgen py-isort ox-gfm org-projectile org-download mwim livid-mode skewer-mode simple-httpd live-py-mode link-hint git-link flyspell-correct-helm flyspell-correct evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump company-emacs-eclim column-enforce-mode rake js2-mode iedit sbt-mode hydra cider auto-complete anaconda-mode smartparens flycheck company projectile helm helm-core markdown-mode alert magit git-commit with-editor f s package-build evil clojure-snippets yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pip-requirements persp-mode paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file noflet neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fontawesome flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu ensime emmet-mode elisp-slime-nav eclim disaster define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda command-log-mode color-theme-solarized coffee-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
