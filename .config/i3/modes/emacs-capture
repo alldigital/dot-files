@@ -10,5 +10,5 @@ mode $emacs-capture {
     bindsym Ctrl+g mode "default"
     bindsym Return mode "default"
 }
-bindsym --release $mod+Shift+x  mode $emacs-capture
-bindsym $mod+Control+space exec emacs-capture --eval '(org-capture)'
+bindsym --release $mod+Shift+n  mode $emacs-capture
+bindsym $mod+Control+n exec emacs-capture --eval '(org-capture)'
