@@ -10,8 +10,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # First, link the proper .i3status.conf
-#exec $HOME/bin/i3status.sh
 
+set $i3_dir "$HOME/.config/i3"
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
