@@ -27,6 +27,7 @@ values."
      better-defaults
      spell-checking
      syntax-checking
+     themes-megapack
      ;; Programming languages
      c-c++
      elm
@@ -68,7 +69,7 @@ values."
    dotspacemacs-additional-packages
    '(
      fontawesome
-     color-theme-solarized
+     solarized-theme
      clojure-snippets
      dockerfile-mode
      magithub
@@ -129,8 +130,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized
+                         solarized-dark
+                         sanityinc-solarized-dark
                          material
+                         material-light
                          spacemacs-light
                          spacemacs-dark
                          )
@@ -241,7 +244,9 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(t
+                               :relative t
+                               :size-limit-kb 1024)
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -522,8 +527,8 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#839496"])
+ '(ansi-term-color-vector
+   [unspecified "#081724" "#ff694d" "#68f6cb" "#fffe4e" "#bad6e2" "#afc0fd" "#d2f1ff" "#d3f9ee"])
  '(cider-repl-display-help-banner nil)
  '(cider-repl-history-file "~/.lein/cider-repl-history")
  '(cider-show-error-buffer nil)
@@ -535,7 +540,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "51e228ffd6c4fff9b5168b31d5927c27734e82ec61f414970fc6bcce23bc140d" "d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "66132890ee1f884b4f8e901f0c61c5ed078809626a547dbefbb201f900d03fd8" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "19ba41b6dc0b5dd34e1b8628ad7ae47deb19f968fe8c31853d64ea8c4df252b8" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "b0ab5c9172ea02fba36b974bbd93bc26e9d26f379c9a29b84903c666a5fde837" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+    ("cedd3b4295ac0a41ef48376e16b4745c25fa8e7b4f706173083f16d5792bb379" "5dc0ae2d193460de979a463b907b4b2c6d2c9c4657b2e9e66b8898d2592e3de5" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "c9321e2db48a21fc656a907e97ee85d8cd86967855bf0bed3998bcf9195c758b" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "51e228ffd6c4fff9b5168b31d5927c27734e82ec61f414970fc6bcce23bc140d" "d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "66132890ee1f884b4f8e901f0c61c5ed078809626a547dbefbb201f900d03fd8" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "19ba41b6dc0b5dd34e1b8628ad7ae47deb19f968fe8c31853d64ea8c4df252b8" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "b0ab5c9172ea02fba36b974bbd93bc26e9d26f379c9a29b84903c666a5fde837" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
  '(evil-want-Y-yank-to-eol t)
  '(fci-rule-color "#eee8d5" t)
  '(frame-background-mode (quote dark))
@@ -562,6 +567,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(hl-fg-colors
    (quote
     ("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3")))
+ '(hl-sexp-background-color "#efebe9")
  '(magit-diff-use-overlays nil)
  '(mouse-yank-at-point t)
  '(nrepl-message-colors
@@ -569,7 +575,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (intero flycheck-haskell company-ghci company-ghc ghc toml-mode racer jinja2-mode hlint-refactor hindent helm-hoogle haskell-snippets flycheck-rust docker tablist docker-tramp csv-mode haskell-mode company-cabal cmm-mode cargo rust-mode ansible-doc ansible flycheck-elm elm-mode packed avy haml-mode magithub bind-key tern bind-map org scala-mode inflections seq highlight request magit-popup pcre2el minitest hide-comnt powerline spinner peg multiple-cursors clojure-mode anzu undo-tree async yasnippet inf-ruby dash dockerfile-mode phpunit phpcbf php-extras php-auto-yasnippets nginx-mode magit-gh-pulls github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht drupal-mode php-mode diff-hl pug-mode yapfify uuidgen py-isort ox-gfm org-projectile org-download mwim livid-mode skewer-mode simple-httpd live-py-mode link-hint git-link flyspell-correct-helm flyspell-correct evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump company-emacs-eclim column-enforce-mode rake js2-mode iedit sbt-mode hydra cider auto-complete anaconda-mode smartparens flycheck company projectile helm helm-core markdown-mode alert magit git-commit with-editor f s package-build evil clojure-snippets yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pip-requirements persp-mode paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file noflet neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fontawesome flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu ensime emmet-mode elisp-slime-nav eclim disaster define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda command-log-mode color-theme-solarized coffee-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme log4e winum unfill fuzzy company-ansible intero flycheck-haskell company-ghci company-ghc ghc toml-mode racer jinja2-mode hlint-refactor hindent helm-hoogle haskell-snippets flycheck-rust docker tablist docker-tramp csv-mode haskell-mode company-cabal cmm-mode cargo rust-mode ansible-doc ansible flycheck-elm elm-mode packed avy haml-mode magithub bind-key tern bind-map org scala-mode inflections seq highlight request magit-popup pcre2el minitest hide-comnt powerline spinner peg multiple-cursors clojure-mode anzu undo-tree async yasnippet inf-ruby dash dockerfile-mode phpunit phpcbf php-extras php-auto-yasnippets nginx-mode magit-gh-pulls github-search github-clone github-browse-file git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht drupal-mode php-mode diff-hl pug-mode yapfify uuidgen py-isort ox-gfm org-projectile org-download mwim livid-mode skewer-mode simple-httpd live-py-mode link-hint git-link flyspell-correct-helm flyspell-correct evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump company-emacs-eclim column-enforce-mode rake js2-mode iedit sbt-mode hydra cider auto-complete anaconda-mode smartparens flycheck company projectile helm helm-core markdown-mode alert magit git-commit with-editor f s package-build evil clojure-snippets yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pip-requirements persp-mode paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file noflet neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fontawesome flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu ensime emmet-mode elisp-slime-nav eclim disaster define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda command-log-mode color-theme-solarized coffee-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#eee8d5")
@@ -577,9 +583,12 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
+ '(solarized-distinct-fringe-background t)
+ '(solarized-high-contrast-mode-line t)
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(vc-annotate-background nil)
+ '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
    (quote
     ((20 . "#dc322f")
@@ -613,6 +622,4 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(default ((t (:background nil)))))
