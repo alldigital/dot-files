@@ -574,7 +574,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
    (quote
     ("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3")))
  '(hl-sexp-background-color "#efebe9")
- '(linum-format " %7i ")
+ '(linum-format (quote dynamic))
  '(magit-diff-use-overlays nil)
  '(mouse-yank-at-point t)
  '(nrepl-message-colors
