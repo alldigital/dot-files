@@ -2,13 +2,13 @@
 ## i3 gaps
 
 
-set $mode_gaps gaps
-set $mode_gaps_outer outer gaps
-set $mode_gaps_inner inner gaps
-bindsym $mod+Shift+g mode "$mode_gaps"
-mode "$mode_gaps" {
-    bindsym o      mode "$mode_gaps_outer"
-    bindsym i      mode "$mode_gaps_inner"
+set $mode_gaps "gaps (i) inner (o) outer"
+set $mode_gaps_outer "Outer gaps"
+set $mode_gaps_inner "Inner gaps"
+bindsym $mod+Shift+g mode $mode_gaps
+mode $mode_gaps {
+    bindsym o      mode $mode_gaps_outer
+    bindsym i      mode $mode_gaps_inner
 
     bindsym 0      mode "default", exec --no-startup-id i3-msg "gaps inner current set 0" && i3-msg "gaps outer current set 0"
     bindsym d      mode "default", exec --no-startup-id i3-msg "gaps inner current set $default_gaps_inner" && i3-msg "gaps outer current set $default_gaps_outer"
@@ -17,7 +17,7 @@ mode "$mode_gaps" {
     bindsym Escape mode "default"
 }
 
-mode "$mode_gaps_inner" {
+mode $mode_gaps_inner {
     bindsym plus  gaps inner current plus 5
     bindsym minus gaps inner current minus 5
     bindsym 0     mode "default", gaps inner current set 0
@@ -35,7 +35,7 @@ mode "$mode_gaps_inner" {
     bindsym Escape mode "default"
 }
 
-mode "$mode_gaps_outer" {
+mode $mode_gaps_outer {
     bindsym plus  gaps outer current plus 5
     bindsym minus gaps outer current minus 5
     bindsym 0     mode "default", gaps outer current set 0
