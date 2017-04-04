@@ -1,0 +1,14 @@
+# -*- mode:conf -*-
+
+bindsym $mod+Next exec pactl set-sink-volume 0 -10%
+bindsym $mod+Prior exec pactl set-sink-volume 0 +10%
+bindsym $mod+Home exec pactl set-sink-mute 0 toggle
+
+
+# Move the current workspace to the next output
+# (effectively toggles when you only have two outputs)
+bindsym $mod+x move workspace to output right
+bindsym $mod+z move workspace to output left
+
+# Switch dark/light theme
+bindsym $mod+BackSpace exec "$i3/scripts/switch_theme.sh"

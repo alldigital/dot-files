@@ -1,0 +1,5 @@
+# -*- mode:conf -*-
+# emacs related keybindings
+
+# Capture
+bindsym $mod+Shift+n       exec ~/bin/emacs-capture --eval '(org-capture nil "l")'
