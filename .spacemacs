@@ -27,7 +27,7 @@ values."
      better-defaults
      spell-checking
      syntax-checking
-     themes-megapack
+     ;; themes-megapack
      ;; Programming languages
      c-c++
      elm
@@ -69,8 +69,8 @@ values."
    dotspacemacs-additional-packages
    '(
      fontawesome
-     ;; color-theme-solarized
-     solarized-theme
+     color-theme-solarized
+     ;; solarized-theme
      clojure-snippets
      dockerfile-mode
      magithub
@@ -131,12 +131,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-dark
-                         sanityinc-solarized-dark
-                         material
-                         material-light
-                         spacemacs-light
+                         solarized
                          spacemacs-dark
+                         spacemacs-light
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -306,7 +303,6 @@ you should place your code here."
   ;; (set-frame-parameter nil 'background-mode 'dark)
   ;; (spacemacs/load-theme 'solarized)
 
-  ;; org-protocol
   (require 'org-protocol)
   ;; (require 'org-protocol-capture-html)
 
@@ -315,8 +311,7 @@ you should place your code here."
   ;; Add line numbers
   (global-linum-mode)
   (with-eval-after-load 'linum
-    (linum-relative-toggle))
-  ;; (load-theme 'solarized)
+  (linum-relative-toggle))
   ;; Org mode alternative bullets
   (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
   ;; All files in this directory should activate org-mode
@@ -522,6 +517,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
 
   (ed/configure-org-mode)
 
+  (load-theme 'solarized)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
