@@ -1,0 +1,16 @@
+# -*- mode:conf -*-
+## Power control
+
+set $mode_power "Power control: (l)ock (e) logout (s)uspend (h)ibernate (r)eboot shutd(o)wn"
+bindsym --release $mod+Control+l mode $mode_power
+mode $mode_power {
+    bindsym l mode "default", exec --no-startup-id $i3/scripts/i3exit lock
+    bindsym e mode "default", exec --no-startup-id $i3/scripts/i3exit logout
+    bindsym s mode "default", exec --no-startup-id $i3/scripts/i3exit suspend
+    bindsym h mode "default", exec --no-startup-id $i3/scripts/i3exit hibernate
+    bindsym r mode "default", exec --no-startup-id $i3/scripts/i3exit reboot
+    bindsym p mode "default", exec --no-startup-id $i3/scripts/i3exit shutdown
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}

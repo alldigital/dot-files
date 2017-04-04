@@ -1,0 +1,12 @@
+# -*- mode:conf -*-
+set $applaunch "Launch: (e)macs (c)hrome (s)potify"
+mode $applaunch {
+    bindsym e exec emacsclient -nc -a; mode "default"
+    bindsym Shift+e exec emacsclient -t -a; mode "default"
+    bindsym c exec chromium; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+p  mode $applaunch

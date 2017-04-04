@@ -29,7 +29,7 @@ use base16;
 binmode(STDOUT, ":utf8");
 
 # default values
-my $t_warn = 50;
+my $t_warn = 55;
 my $t_crit = 70;
 my $chip = "";
 my $temperature = -9999;
