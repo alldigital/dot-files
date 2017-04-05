@@ -10,6 +10,6 @@ bindsym $mod+o exec LANG=ru_RU.UTF-8 libreoffice
 bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
 
 # Rofi cheatsheets
-bindsym $mod+c exec --no-startup-id i3-msg exec $HOME/.config/i3/scripts/cht.sh
+bindsym $mod+c exec --no-startup-id i3-msg exec $i3/scripts/cht.sh
 # Notes
-bindsym $mod+n exec --no-startup-id i3-msg exec $HOME/.config/i3/scripts/notes.sh
+bindsym $mod+n exec --no-startup-id i3-msg exec $i3/scripts/notes.sh
