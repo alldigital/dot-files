@@ -1,0 +1,31 @@
+# -*- mode:conf -*-
+# i3 startup
+
+# Compton i3 lines
+# seq 0 3 | xargs -l1 -I@ compton -b -d :0.@  # Multihead support
+#exec --no-startup-id "compton -b"
+exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
+
+# use autolock for screen locking
+# exec --no-startup-id xautolock -time 10 -locker "i3lock -c dd4814" -corners 0-00
+
+#exec wicd-client -t
+#exec gxneur &
+#exec blueman-applet &
+#exec nm-applet&
+#exec megasync &
+#exec setxkbmap -option 'grp:ctrl_shift_toggle' "us,ru(winkeys)" &
+
+# Keyboard setup
+exec setxkbmap -option caps:backspace -option shift:both_capslock -option 'grp:alt_space_toggle' "us,ru(winkeys)" &
+exec xcape -e 'Control_L=Escape'
+exec xcape -e 'Control_R=Escape'
+exec --no-startup-id set r rate 400 25
+#exec xkbcomp $HOME/.config/xkb/my $DISPLAY
+
+exec insync start &
+exec numlockx on &
+exec dunst -config ~/.config/dunst/dunstrc &
+exec --no-startup-id xautolock -time 10 -locker i3lock-fancy &
+# exec --no-startup-id $i3/scripts/remap_capslock.sh
+exec feh --bg-scale ~/.wallpaper/wallpaper.jpg
