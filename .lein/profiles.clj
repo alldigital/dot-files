@@ -12,9 +12,4 @@
                   [lein-kibit "0.1.3"]
                   [lein-deps-tree "0.1.2"]
                   [lein-cljfmt "0.5.6"]
-                  [lein-exec "0.3.6"]
-                  [lein-gorilla "0.4.0"]]
-        :gorilla-options
-        {:keymap {"command:worksheet:newBelow" "alt+o"
-                    "command:worksheet:newAbove" "alt+shift+o"}
-           :load-scan-exclude #{".git" ".svn"}}}}
+                  [lein-exec "0.3.6"]]}}
