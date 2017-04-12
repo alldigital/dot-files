@@ -31,6 +31,8 @@
 (define-key *root-map* (kbd "C-l") "exec i3lock-fancy")
 ;; Terminal
 (define-key *root-map* (kbd "t") "exec i3-sensible-terminal")
+;; Libreoffice
+(define-key *root-map* (kbd "o") "exec LANG=ru_RU.UTF-8 libreoffice")
 
 ;; Web jump (works for Google and Imdb)
 (defmacro make-web-jump (name prefix)
