@@ -19,6 +19,8 @@
     (when cmd
       (eval-command cmd t))))
 
+;; rofi commands
+(define-key *root-map* (kbd "p") "exec rofi -show run -font \"PragmataPro for Powerline 10\"")
 ;; Read some doc
 (define-key *root-map* (kbd "d") "exec gv")
 ;; Browse somewhere

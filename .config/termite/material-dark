@@ -1,7 +1,7 @@
-# Solarized dark color scheme
+# Material dark color scheme
 
 [options]
-font = PragmataPro for Powerline 10
+font = PragmataPro for Powerline 12
 # font = Roboto Mono for Powerline 10
 # font = Hack 10
 
@@ -44,4 +44,3 @@ color14 = #26a69a
 # white
 color7  = #cfd8dc
 color15 = #eceff1
-

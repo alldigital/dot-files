@@ -1,0 +1,176 @@
+! Material dark color scheme
+
+! Common
+
+#define S_yellow        #ffc107
+#define S_orange        #ffa74d
+#define S_red           #ff9800
+#define S_magenta       #e91e63
+#define S_violet        #ad1457
+#define S_blue          #03a9f4
+#define S_cyan          #009688
+#define S_green         #8bc34a
+
+
+! Dark
+
+#define S_base03        #37474f
+#define S_base02        #263238
+#define S_base01        #9ccc65
+#define S_base00        #ffa000
+#define S_base0         #81d4fa
+#define S_base1         #26a69a
+#define S_base2         #cfd8dc
+#define S_base3         #eceff1
+
+! ! special
+! *.foreground:   #eceff1
+! *.background:   #263238
+! *.cursorColor:  #eceff1
+
+! ! black
+! *.color0:       #263238
+! *.color8:       #37474f
+
+! ! red
+! *.color1:       #ff9800
+! *.color9:       #ffa74d
+
+! ! green
+! *.color2:       #8bc34a
+! *.color10:      #9ccc65
+
+! ! yellow
+! *.color3:       #ffc107
+! *.color11:      #ffa000
+
+! ! blue
+! *.color4:       #03a9f4
+! *.color12:      #81d4fa
+
+! ! magenta
+! *.color5:       #e91e63
+! *.color13:      #ad1457
+
+! ! cyan
+! *.color6:       #009688
+! *.color14:      #26a69a
+
+! ! white
+! *.color7:       #cfd8dc
+! *.color15:      #eceff1
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+*background:              S_base03
+*foreground:              S_base0
+*fading:                  40
+*fadeColor:               S_base03
+*cursorColor:             S_base1
+*pointerColorBackground:  S_base01
+*pointerColorForeground:  S_base1
+
+*color0:                  S_base02
+*color1:                  S_red
+*color2:                  S_green
+*color3:                  S_yellow
+*color4:                  S_blue
+*color5:                  S_magenta
+*color6:                  S_cyan
+*color7:                  S_base2
+*color9:                  S_orange
+*color8:                  S_base03
+*color10:                 S_base01
+*color11:                 S_base00
+*color12:                 S_base0
+*color13:                 S_violet
+*color14:                 S_base1
+*color15:                 S_base3
+
+! Font Settings
+!
+
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgba
+
+! URXVT Settings
+!
+URxvt.letterSpace: -1
+
+! Fonts
+!
+
+URxvt.font: xft:PragmataPro for Powerline:size=11,xft:PragmataPro for Powerline:size=11
+URxvt.boldFont: xft:PragmataPro for Powerline:bold:size=11,xft:PragmataPro for Powerline:bold:size=11
+URxvt.italicFont: xft:PragmataPro for Powerline:italic:size=11,xft:PragmataPro for Powerline:italic:size=11
+URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:PragmataPro for Powerline:bold:italic:size=11
+
+
+! URXVT ENABLE LINK SUPPORT
+!------------------------------------------------
+
+URxvt.perl-ext-common: default,matcher,vtwheel,selection-to-clipboard,pasta,clipboard,keyboard-select,url-select,font-size
+URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+!tabbed
+URxvt.matcher.button:   1
+URxvt.matcher.rend.0: Uline Italic
+
+!disable the fucking bell
+URxvt.insecure: 			false
+URxvt*urgentOnBell: false
+URxvt*visualBell: true
+
+! clipboard
+! update clipboard whenever primary gets updated
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+!
+! URXVT SCROLLBAR AND CURSOR STYLE
+!------------------------------------------------
+
+URxvt*saveLines: 			300000
+URxvt.scrollBar: 			false
+!URxvt*scrollstyle:			plain
+URxvt*cursorBlink: 			false
+URxvt*cursorUnderline: 		true
+URxvt*cursorColor: 			#51c4d4
+
+! URXVT TABS
+!------------------------------------------------
+
+URxvt.tabbedex.autohide: 	yes
+URxvt.tabbedex.tabbar-fg: 	2
+URxvt.tabbedex.tabbar-bg: 	0
+URxvt.tabbedex.tab-fg:    	10
+URxvt.tabbedex.tab-bg:    	0
+URxvt.tabbedex.title: 		yes
+URxvt.tabbedex.new-button:  no
+
+! Font size
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase
+URxvt.keysym.C-0:     font-size:reset
+URxvt.keysym.C-9:     font-size:show
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: S_base03, S_base03, S_base02
+rofi.color-normal: S_base03, S_base0, S_base03, S_base02, S_base0
+rofi.color-active: S_base03, S_blue, S_base03, S_base02, S_blue
+rofi.color-urgent: S_base03, S_magents, S_base03, S_base02, S_magents
+rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"
