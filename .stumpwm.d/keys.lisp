@@ -13,7 +13,9 @@
                    collect `(define-key m ,(first i) ,(second i)))
            m)))
 
-(run-shell-command "xkbcomp ~/.Xkeymap :0.0")
+(run-shell-command (concatenate 'string
+                                "xkbcomp ~/.Xkeymap :0."
+                                (write-to-string ed/display-number)))
 
 ;; change the prefix key to Control-q
 (set-prefix-key (kbd "F20"))
@@ -43,21 +45,21 @@
 ;; prefix keybindings
 (fill-keymap *root-map*
              (kbd "h")   '*help-map*
-             (kbd "C-a") '*new-apps-map*
-             (kbd "C-s") '*system-map*
-             (kbd "s-p") '*power-map*
+             (kbd "a")   '*new-apps-map*
+             (kbd "s")   '*system-map*
+             (kbd "l")   '*power-map*
              (kbd "g")   '*groups-map*
              (kbd "x")   '*exchange-window-map*
              ;; switch to apps
              (kbd "d")   "rofi-run"
-             (kbd "p")   "rofi-run"
              (kbd "t")   "termite"
+             (kbd "C-t") "exec termite"
              (kbd "e")   "emacs"
              (kbd "C-f") "firefox"
              (kbd "c")   "google-chrome-stable"
              (kbd "C-m") "ncmpcpp"
              (kbd "o")   "office"
-             (kbd "C-t") "exec /home/ed/bin/touchpad.sh"
+             (kbd "i")   "exec /home/ed/bin/touchpad.sh"
              (kbd "n")   "exec /home/ed/.stumpwm.d/scripts/notes.sh"
              (kbd "N")   "exec /home/ed/.stumpwm.d/scripts/cht.sh"
              ;;
@@ -69,6 +71,7 @@
              (kbd "m")   "lastmsg"
              (kbd "G")   "vgroups"
              (kbd "w")   "windows"
+             (kbd "M-g") "gaps"
              *escape-fake-key* "send-escape"
              (kbd "F1")  "gselect 1"
              (kbd "F2")  "gselect 2"
@@ -97,10 +100,11 @@
              (kbd "C-b") "brightness-set")
 
 (fill-keymap *power-map*
-             (kbd "C-s") "power-shutdown t"
-             (kbd "C-r") "power-reboot t"
-             (kbd "C-p") "power-suspend t"
-             (kbd "C-h") "power-hibernate t")
+             (kbd "l") "exec i3lock-fancy"
+             (kbd "s") "exec systemctl poweroff"
+             (kbd "r") "exec systemctl reboot"
+             (kbd "p") "exec systemctl suspend"
+             (kbd "h") "exec systemctl hibernate")
 
 (fill-keymap *group-top-map*
              *escape-key* '*group-root-map*)
@@ -154,8 +158,8 @@
              (kbd "C-8")     "pull 8"
              (kbd "C-9")     "pull 9"
              (kbd "R")       "remove"
-             (kbd "s")       "vsplit"
-             (kbd "S")       "hsplit"
+             (kbd "_")       "vsplit"
+             (kbd "|")       "hsplit"
              (kbd "r")       "iresize"
              (kbd "o")       "fnext"
              (kbd "C-o")     "fnext"

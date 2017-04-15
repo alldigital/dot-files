@@ -34,7 +34,7 @@
       "%a %b %e %k:%M")
 
 (setf *screen-mode-line-format*
-      (list "[^B%n^b] %W^> | %l |"
+      (list "[%h][^B%n^b] %W^> | %l |"
             ;; '(:eval (run-shell-command battery-status-command t))
             ;; " | "
             ;; '(:eval (run-shell-command vol-status-command t))
@@ -42,7 +42,7 @@
             ;; '(:eval (run-shell-command vol-percent-command t))
             " %d"))
 
-(setf *mode-line-timeout* 10)
+(setf *mode-line-timeout* 1)
 
 ;; modeline colors
 

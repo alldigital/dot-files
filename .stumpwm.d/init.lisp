@@ -39,9 +39,9 @@
 (load-files
   '("util"
 ;;    "my-init"
-;; "xresources"
+    "xresources"
     "apps"
-;;    "gaps"
+    "gaps"
     "keys"
     "layout"
     "mode-line"
