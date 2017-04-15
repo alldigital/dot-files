@@ -11,6 +11,6 @@ it in entirety, I advise taking bits and pieces, as I'm not an expert.
 This configuration was inspired by (including, but not limited to):
 
 - [[http://www.xsteve.at/prg/stumpwm/][XSteve's StumpWM configuration]]
-- [[https://github.com/alezost/stumpwmrc)][alezost's stumpwmrc]]
+- [[https://github.com/alezost/stumpwmrc][alezost's stumpwmrc]]
 - [[https://github.com/dwysocki/.stumpwm.d][Dan Wysocki's .stumpwm.d]]
 - [[https://github.com/stumpwm/stumpwm/][StumpWM's source code]]

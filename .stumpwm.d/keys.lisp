@@ -13,10 +13,12 @@
                    collect `(define-key m ,(first i) ,(second i)))
            m)))
 
-;; change the prefix key to Control-q
-(set-prefix-key (kbd "s-z"))
+(run-shell-command "xkbcomp ~/.Xkeymap :0.0")
 
-(setf *escape-key* (kbd "s-z"))
+;; change the prefix key to Control-q
+(set-prefix-key (kbd "F20"))
+
+(setf *escape-key* (kbd "F20"))
 (setf *escape-fake-key* (kbd "z"))
 
 ;; map for launching new applications
