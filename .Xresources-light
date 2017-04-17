@@ -17,26 +17,26 @@
 
 ! Dark
 
-! #define S_base03        #002b36
-! #define S_base02        #073642
-! #define S_base01        #586e75
-! #define S_base00        #657b83
-! #define S_base0         #839496
-! #define S_base1         #93a1a1
-! #define S_base2         #eee8d5
-! #define S_base3         #fdf6e3
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
 
 
 ! Light
 
-#define S_base03        #fdf6e3
-#define S_base02        #eee8d5
-#define S_base01        #93a1a1
-#define S_base00        #839496
-#define S_base0         #657b83
-#define S_base1         #586e75
-#define S_base2         #073642
-#define S_base3         #002b36
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
 
 
 ! To only apply colors to your terminal, for example, prefix
@@ -81,29 +81,42 @@ Xft.rgba: rgba
 
 ! URXVT Settings
 !
-
+URxvt.letterSpace: -1
 
 ! Fonts
 !
 
-URxvt.font: xft:PragmataPro for Powerline:size=10,xft:PragmataPro:size=10
-URxvt.boldFont: xft:PragmataPro for Powerline:bold:size=10,xft:PragmataPro:bold:size=10
-URxvt.italicFont: xft:PragmataPro for Powerline:italic:size=10,xft:PragmataPro:italic:size=10
-URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=10, xft:PragmataPro:bold:italic:size=10
+URxvt.font: xft:PragmataPro for Powerline:size=11,xft:PragmataPro for Powerline:size=11
+URxvt.boldFont: xft:PragmataPro for Powerline:bold:size=11,xft:PragmataPro for Powerline:bold:size=11
+URxvt.italicFont: xft:PragmataPro for Powerline:italic:size=11,xft:PragmataPro for Powerline:italic:size=11
+URxvt.bolditalicFont: xft:PragmataPro for Powerline:bold:italic:size=11, xft:PragmataPro for Powerline:bold:italic:size=11
 
 
 ! URXVT ENABLE LINK SUPPORT
 !------------------------------------------------
 
-URxvt.perl-ext-common: default,matcher,tabbedex,vtwheel
+URxvt.perl-ext-common: default,matcher,vtwheel,selection-to-clipboard,pasta,clipboard,keyboard-select,url-select,font-size
 URxvt.url-launcher: /usr/bin/google-chrome-stable
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 !tabbed
 URxvt.matcher.button:   1
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.matcher.rend.0: Uline Italic
 
 !disable the fucking bell
 URxvt.insecure: 			false
+URxvt*urgentOnBell: false
+URxvt*visualBell: true
 
+! clipboard
+! update clipboard whenever primary gets updated
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+!
 ! URXVT SCROLLBAR AND CURSOR STYLE
 !------------------------------------------------
 
@@ -124,6 +137,12 @@ URxvt.tabbedex.tab-fg:    	10
 URxvt.tabbedex.tab-bg:    	0
 URxvt.tabbedex.title: 		yes
 URxvt.tabbedex.new-button:  no
+
+! Font size
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.keysym.C-equal: perl:font-size:increase
+URxvt.keysym.C-0:     font-size:reset
+URxvt.keysym.C-9:     font-size:show
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
