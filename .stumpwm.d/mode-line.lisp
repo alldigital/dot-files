@@ -35,8 +35,8 @@
 
 (setf *screen-mode-line-format*
       (list "[%h][^B%n^b] %W^> | %l |"
-            ;; '(:eval (run-shell-command battery-status-command t))
-            ;; " | "
+            '(:eval (run-shell-command battery-status-command t))
+            " | "
             ;; '(:eval (run-shell-command vol-status-command t))
             ;; " "
             ;; '(:eval (run-shell-command vol-percent-command t))
