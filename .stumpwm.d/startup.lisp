@@ -7,3 +7,5 @@
 ;;(run-shell-command "xkbcomp ~/.Xkeymap :0.0")
 ;; Start notifications
 (run-shell-command "dunst -config ~/.config/dunst/dunstrc")
+;; Turn off touchpad for ThinkPad
+(run-shell-command "synclient TouchpadOff=1")
