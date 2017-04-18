@@ -8,7 +8,7 @@
   (run-or-raise "urxvt" '(:class "URxvt")))
 
 (defcommand termite () ()
-  (run-or-raise "termite" '(:class "Term")))
+  (run-or-raise "termite" '(:class "Termite")))
 
 (defcommand emacs () ()
   (run-or-raise "emacsclient -c -a \"\"" '(:class "Emacs")))
@@ -17,7 +17,7 @@
   (run-or-raise "firefox" '(:class "Firefox")))
 
 (defcommand google-chrome-stable () ()
-  (run-or-raise "google-chrome-stable" '(:class "Google-chrome-stable")))
+  (run-or-raise "google-chrome-stable" '(:class "Google-chrome")))
 
 (defcommand ncmpcpp () ()
   (run-or-raise "urxvt -e ncmpcpp" '(:title "ncmpcpp")))
@@ -26,4 +26,4 @@
   (run-or-raise "rofi -show run -font \"PragmataPro for Powerline 10\"" '(:title "rofi")))
 
 (defcommand office () ()
-  (run-or-raise "LANG=ru_RU.UTF-8 libreoffice" '(:class "Office")))
+  (run-or-raise "LANG=ru_RU.UTF-8 libreoffice" '(:class "libreoffice-writer")))

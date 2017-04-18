@@ -12,7 +12,7 @@
 
 (set-font (make-instance 'xft:font :family "PragmataPro for Powerline"
                                    :subfamily "Regular"
-                                   :size 12))
+                                   :size 10))
 
 ;; load external rc files
 
