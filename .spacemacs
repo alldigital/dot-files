@@ -136,9 +136,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         material
+                         solarized
                          solarized-light
-                         ;; material
-                         ;; solarized
                          spacemacs-dark
                          spacemacs-light
                          )
@@ -524,7 +524,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
 
   (ed/configure-org-mode)
 
-  (load-theme 'solarized-light)
+  (load-theme 'material)
 
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   ;; Replace "sbcl" with the path to your implementation
@@ -596,6 +596,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
+ '(safe-local-variable-values (quote ((hl-sexp-mode) (rainbow-mode . t))))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
@@ -638,4 +639,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ '(default ((t (:background nil))))
+ '(helm-ff-directory ((t (:background "#263238" :foreground "#81d4fa"))))
+ '(helm-ff-file ((t (:background "#263238" :foreground "#ffffff"))))
+ '(slime-repl-inputed-output-face ((t (:foreground "Green")))))

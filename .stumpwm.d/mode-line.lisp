@@ -60,8 +60,8 @@
 
 ;; modeline colors
 
-(setf *mode-line-background-color* "dimgray")
-(setf *mode-line-foreground-color* "cyan")
+(setf *mode-line-background-color* "#263238")
+(setf *mode-line-foreground-color* "#ffffff")
 (setf *mode-line-position* :bottom)
 
 ;; Turn on the modeline
