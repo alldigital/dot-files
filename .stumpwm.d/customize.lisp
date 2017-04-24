@@ -5,6 +5,10 @@
 
 (in-package :stumpwm)
 
+;; When set to :click, scrolling is slow/stuttering
+;; Could be :click :sloppy and :ignore
+(setf *mouse-focus-policy* :ignore)
+
 (defun display-bindings-for-keymaps (key-seq &rest keymaps)
   (let* ((screen (current-screen))
          (data (mapcan (lambda (map)
