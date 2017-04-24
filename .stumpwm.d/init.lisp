@@ -48,4 +48,5 @@
     "mouse"
     "system"
     "swank"
-    "startup"))
+    "startup"
+    "customize"))
