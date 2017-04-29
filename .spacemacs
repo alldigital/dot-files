@@ -445,6 +445,9 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     (put-clojure-indent 'cond #'indent-cond)
     (set-face-italic 'clojure-keyword-face t))
 
+  (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
+  (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
+
   ;; lisp wrap-around fix
   (spacemacs/set-leader-keys "kw" nil)
   (spacemacs/set-leader-keys "kw(" 'paredit-wrap-round)
