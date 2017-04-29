@@ -70,16 +70,17 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     fontawesome
-     color-theme-solarized
-     material-theme
-     plan9-theme
+     ;; (org-protocol-capture-html :local (recipe :fetcher github :repo "alphapapa/org-protocol-capture-html"))
      ;; solarized-theme
      clojure-snippets
+     color-theme-solarized
+     darkroom
      dockerfile-mode
-     magithub
+     fontawesome
      langtool
-     ;; (org-protocol-capture-html :local (recipe :fetcher github :repo "alphapapa/org-protocol-capture-html"))
+     magithub
+     material-theme
+     plan9-theme
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -313,6 +314,7 @@ you should place your code here."
   (require 'org-protocol)
   ;; (require 'org-protocol-capture-html)
 
+  (require 'darkroom)
 
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
   ;; Add line numbers
