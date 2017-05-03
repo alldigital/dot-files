@@ -6,6 +6,10 @@
 
 (add-to-load-path "/home/ed/.stumpwm.d/contrib/modeline/cpu")
 (load-module "cpu")
+
+(add-to-load-path "/home/ed/.stumpwm.d/contrib/modeline/mem")
+(load-module "mem")
+
 (add-to-load-path "/home/ed/.stumpwm.d/contrib/modeline/net")
 (load-module "net")
 
@@ -48,7 +52,7 @@
       "%a %b %e %k:%M")
 
 (setf *screen-mode-line-format*
-      (list "[%h][^B%n^b] %W^>| %D | %t %f %c| %l| %I |"
+      (list "[%h][^B%n^b] %W^>| %D | %M | %t %f %c| %l| %I |"
             '(:eval (run-shell-command battery-status-command t))
             " | "
             ;; '(:eval (run-shell-command vol-status-command t))
