@@ -8,6 +8,7 @@
 [core]
 	editor = vim
 [alias]
+	st = status
   co = checkout
   ec = config --global -e
 	up = pull --rebase --autostash
