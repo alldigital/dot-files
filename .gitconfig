@@ -9,8 +9,8 @@
 	editor = vim
 [alias]
 	st = status
-  co = checkout
-  ec = config --global -e
+	co = checkout
+	ec = config --global -e
 	up = pull --rebase --autostash
         cob = checkout -b
 	cm = !git add -A && git commit -m
