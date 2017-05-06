@@ -23,43 +23,6 @@
 #define S_base2         #cfd8dc
 #define S_base3         #eceff1
 
-! ! special
-! *.foreground:   #eceff1
-! *.background:   #263238
-! *.cursorColor:  #eceff1
-
-! ! black
-! *.color0:       #263238
-! *.color8:       #37474f
-
-! ! red
-! *.color1:       #ff9800
-! *.color9:       #ffa74d
-
-! ! green
-! *.color2:       #8bc34a
-! *.color10:      #9ccc65
-
-! ! yellow
-! *.color3:       #ffc107
-! *.color11:      #ffa000
-
-! ! blue
-! *.color4:       #03a9f4
-! *.color12:      #81d4fa
-
-! ! magenta
-! *.color5:       #e91e63
-! *.color13:      #ad1457
-
-! ! cyan
-! *.color6:       #009688
-! *.color14:      #26a69a
-
-! ! white
-! *.color7:       #cfd8dc
-! *.color15:      #eceff1
-
 ! To only apply colors to your terminal, for example, prefix
 ! the color assignment statement with its name. Example:
 !
@@ -172,5 +135,24 @@ rofi.color-enabled: true
 rofi.color-window: S_base03, S_base03, S_base02
 rofi.color-normal: S_base03, S_base0, S_base03, S_base02, S_base0
 rofi.color-active: S_base03, S_blue, S_base03, S_base02, S_blue
-rofi.color-urgent: S_base03, S_magents, S_base03, S_base02, S_magents
+rofi.color-urgent: S_base03, S_magenta, S_base03, S_base02, S_magenta
 rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"
+
+! StumpWM resources
+! colors
+stumpwm.fg.color:          S_base0
+stumpwm.bg.color:          S_base03
+stumpwm.border.color:      S_base0
+stumpwm.win.bg.color:      S_base03
+stumpwm.mode.line.background.color: S_base03
+stumpwm.mode.line.foreground.color: S_base0
+stumpwm.mode.line.border.color:     S_base03
+stumpwm.mode.line.border.width:     2
+! padding
+stumpwm.mode.line.pad.x:            5
+stumpwm.mode.line.pad.y:            2
+stumpwm.msg.border.width:           1
+! stumpwm.focus.color:                #fdf6e3
+! stumpwm.unfocus.color:              #93a1a1
+! stumpwm.float.focus.color:          #fdf6e3
+! stumpwm.float.unfocus.color:        #93a1a1 !

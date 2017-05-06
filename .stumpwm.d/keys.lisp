@@ -57,6 +57,7 @@
              (kbd "e")   "emacs"
              (kbd "C-f") "firefox"
              (kbd "c")   "google-chrome-stable"
+             (kbd "C-c") "exec google-chrome-stable --new-window"
              (kbd "C-m") "ncmpcpp"
              (kbd "o")   "office"
              (kbd "i")   "exec /home/ed/bin/touchpad.sh"
