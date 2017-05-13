@@ -670,6 +670,11 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cider-eldoc-display-context-dependent-info t)
+ '(cider-eval-result-prefix ";;=> ")
+ '(cider-repl-display-help-banner nil)
+ '(cider-repl-history-file ~/\.lein/cider-repl-history)
+ '(cider-show-error-buffer nil)
  '(custom-safe-themes
    (quote
     ("98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" default)))
