@@ -25,6 +25,9 @@
 (add-to-load-path "/home/ed/.stumpwm.d/contrib/modeline/battery-portable")
 (load-module "battery-portable")
 
+(add-to-load-path "/home/ed/.stumpwm.d/contrib/util/stumptray")
+(load-module "stumptray")
+
 ;; obtain battery status
 ;;   formatted as +XX% when    charging
 ;;                -XX% when discharging
@@ -58,7 +61,7 @@
             ;; '(:eval (run-shell-command vol-status-command t))
             ;; " "
             ;; '(:eval (run-shell-command vol-percent-command t))
-            "%d"))
+            "%d%T "))
 
 (setf *mode-line-timeout* 1)
 
