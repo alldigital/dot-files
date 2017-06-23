@@ -67,6 +67,8 @@
 
 (setf *mode-line-position* :bottom)
 
+(stumptray:stumptray)
+
 ;; Turn on the modeline
 (if (not (head-mode-line (current-head)))
     (toggle-mode-line (current-screen) (current-head)))
