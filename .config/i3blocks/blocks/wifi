@@ -25,14 +25,16 @@ INTERFACE="${BLOCK_INSTANCE:-wlan0}"
 [[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
     [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && exit
 
+SSID=$(iwgetid -r)
+
 #------------------------------------------------------------------------
 
 QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
 #------------------------------------------------------------------------
 
-echo $QUALITY% # full text
-echo $QUALITY% # short text
+echo $QUALITY% $SSID # full text
+echo $QUALITY% $SSID # short text
 
 # color
 if [[ $QUALITY -ge 80 ]]; then
