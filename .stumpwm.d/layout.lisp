@@ -23,17 +23,17 @@
 (setf *group-number-map* "1234567890")
 ;; create groups at startup
 (when *initializing*
-  (gselect 1)
-  (grename " Term")
-  (gnewbg " Web")
-  (gnewbg " Remote")
-  (gnewbg " Media")
-  (gnewbg " Chat")
-  (gnewbg " Writing")
-  (gnewbg " DL")
-  (gnewbg " Office")
-  (gnewbg " Misc")
-  (gnewbg " Dev"))
+;;  (gselect "1")
+  (grename "Term")
+  (gnewbg "Web")
+  (gnewbg "Remote")
+  (gnewbg "Media")
+  (gnewbg "Chat")
+  (gnewbg "Writing")
+  (gnewbg "DL")
+  (gnewbg "Office")
+  (gnewbg "Misc")
+  (gnewbg "Dev"))
 
 
 ;;
