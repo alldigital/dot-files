@@ -428,6 +428,9 @@ you should place your code here."
   (with-eval-after-load 'linum
   (linum-relative-toggle))
 
+  ;; Copy text selected with the mouse to kill ring and clipboard
+  (setq mouse-drag-copy-region t)
+
   ;; Org mode alternative bullets
   (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
   ;; All files in this directory should activate org-mode
