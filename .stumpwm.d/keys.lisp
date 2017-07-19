@@ -17,7 +17,12 @@
                                 "xkbcomp ~/.Xkeymap :0."
                                 (write-to-string ed/display-number)))
 
-;; change the prefix key to Control-q
+;; Async run-shell-command?
+(sleep 2)
+
+(run-shell-command "xcape -e 'Control_L=Escape'")
+
+;; change the prefix key to Win key
 (set-prefix-key (kbd "F20"))
 
 (setf *escape-key* (kbd "F20"))

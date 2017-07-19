@@ -29,10 +29,9 @@
   (gnewbg "Remote")
   (gnewbg "Media")
   (gnewbg "Chat")
-  (gnewbg "Writing")
+  (gnewbg "Misc")
   (gnewbg "DL")
   (gnewbg "Office")
-  (gnewbg "Misc")
   (gnewbg "Dev"))
 
 
