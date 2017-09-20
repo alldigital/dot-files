@@ -30,39 +30,12 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   ;; '(
-   ;;   ;; ----------------------------------------------------------------
-   ;;   ;; Example of useful layers you may want to use right away.
-   ;;   ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-   ;;   ;; <M-m f e R> (Emacs style) to install them.
-   ;;   ;; ----------------------------------------------------------------
-   ;;   helm
-   ;;   ;; auto-completion
-   ;;   ;; better-defaults
-   ;;   emacs-lisp
-   ;;   ;; git
-   ;;   ;; markdown
-   ;;   ;; org
-   ;;   ;; (shell :variables
-   ;;   ;;        shell-default-height 30
-   ;;   ;;        shell-default-position 'bottom)
-   ;;   ;; spell-checking
-   ;;   ;; syntax-checking
-   ;;   ;; version-control
-   ;;   racket
-   ;;   )
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
      helm
      spell-checking
      syntax-checking
-     ;; themes-megapack
      ;; Programming languages
      c-c++
      (clojure :variables clojure-enable-fancify-symbols t)
@@ -124,7 +97,7 @@ values."
      material-theme
      plan9-theme
      highlight-indent-guides
-     (sunrise-commander :location (recipe :fetcher github :repo "escherdragon/sunrise-commander"))
+     ;; (sunrise-commander :location (recipe :fetcher github :repo "escherdragon/sunrise-commander"))
      symon
      )
    ;; A list of packages that cannot be updated.
