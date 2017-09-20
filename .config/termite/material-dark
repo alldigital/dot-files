@@ -1,7 +1,8 @@
 # Material dark color scheme
 
 [options]
-font = PragmataPro for Powerline 10
+font = InputMonoCompressed Medium 10
+# font = PragmataPro for Powerline 10
 # font = Roboto Mono for Powerline 10
 # font = Hack 10
 
