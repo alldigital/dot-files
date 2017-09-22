@@ -9,3 +9,5 @@
 (run-shell-command "dunst -config ~/.config/dunst/dunstrc")
 ;; Turn off touchpad for ThinkPad
 (run-shell-command "synclient TouchpadOff=1")
+;; Start Insync
+(run-shell-command "insync start")

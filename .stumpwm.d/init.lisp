@@ -38,7 +38,6 @@
 ;; load all files
 (load-files
   '("util"
-;;    "my-init"
     "xresources"
     "apps"
     "gaps"
