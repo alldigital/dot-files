@@ -6,14 +6,20 @@
 
 
 (ql:quickload :clx-truetype)
+
+(setf xft:*font-dirs* '("/usr/share/fonts" "/home/ed/.local/share/fonts/InputMonoCompressed"))
 (xft:cache-fonts)
 (ql:quickload :ttf-fonts)
+
 (ql:quickload :swank)
 
-(set-font (make-instance 'xft:font :family "PragmataPro for Powerline"
+;; (set-font (make-instance 'xft:font :family "PragmataPro for Powerline"
+;;                                    :subfamily "Regular"
+;;                                    :size 10))
+
+(set-font (make-instance 'xft:font :family "InputMonoCompressed"
                                    :subfamily "Regular"
                                    :size 10))
-
 ;; load external rc files
 
 (defvar *load-directory*
