@@ -23,7 +23,8 @@ set-option -s escape-time 0
 bind-key r source-file ~/.tmux.conf \; display-message "Reloaded Config."
 
 # Color settings
-set-option -g default-terminal "screen-256color"
+set-option -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",xterm-termite:Tc"
 
 # Activity monitoring
 set-window-option -g monitor-activity on
@@ -159,9 +160,8 @@ if-shell "[[ -r /usr/share/tmux/powerline.conf ]]" 'source "/usr/share/tmux/powe
 
 if-shell "[[ -r /usr/share/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/share/powerline/bindings/tmux/powerline.conf"'
 
-if-shell  "[[ -r /usr/lib/python3.5/site-packages/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/lib/python3.5/site-packages/powerline/bindings/tmux/powerline.conf"' 
+if-shell  "[[ -r /usr/lib/python3.5/site-packages/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/lib/python3.5/site-packages/powerline/bindings/tmux/powerline.conf"'
 
-if-shell  "[[ -r /usr/lib/python3.6/site-packages/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/lib/python3.6/site-packages/powerline/bindings/tmux/powerline.conf"' 
+if-shell  "[[ -r /usr/lib/python3.6/site-packages/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/lib/python3.6/site-packages/powerline/bindings/tmux/powerline.conf"'
 
 if-shell "[[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/tmux/powerline.conf ]]" 'source "/usr/local/lib/python2.7/dist-packages/powerline/bindings/tmux/powerline.conf"'
-
