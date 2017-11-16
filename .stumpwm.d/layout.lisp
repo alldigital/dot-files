@@ -86,6 +86,14 @@
 
 (load-wallpaper)
 
+;; gaps
+
+(add-to-load-path "/home/ed/.stumpwm.d/contrib/util/swm-gaps")
+
+(load-module "swm-gaps")
+
+(setq swm-gaps:*outer-gaps-size* 5)
+(setq swm-gaps:*inner-gaps-size* 5)
 
 #|
 
