@@ -80,6 +80,7 @@ values."
              ranger-ignored-extensions '("mkv" "avi" "iso" "mp3" "mp4"))
      (elfeed :variables
              rmh-elfeed-org-files (list "~/rss/rssfeeds.org"))
+     floobits
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -94,7 +95,6 @@ values."
      color-theme-solarized
      darkroom
      dockerfile-mode
-     floobits
      fontawesome
      highlight-indent-guides
      langtool
