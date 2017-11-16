@@ -34,5 +34,6 @@ windows:
   - adb:
   #- ed@et: ssh ed@etl
   - dev:
+  - dev:
   # - ed@opi: ssh -L 8080:10.0.0.1:80 opi
   # - ed@vs: ssh ed@vs
