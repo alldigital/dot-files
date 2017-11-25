@@ -23,8 +23,8 @@ set-option -s escape-time 0
 bind-key r source-file ~/.tmux.conf \; display-message "Reloaded Config."
 
 # Color settings
-set-option -g default-terminal "tmux-256color"
-set -ga terminal-overrides ",xterm-termite:Tc"
+#set-option -g default-terminal "tmux-256color"
+#set -ga terminal-overrides ",xterm-termite:Tc"
 
 # Activity monitoring
 set-window-option -g monitor-activity on
