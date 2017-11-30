@@ -666,35 +666,35 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
   (add-to-list 'load-path "~/.emacs.local.d/xelb")
   (add-to-list 'load-path "~/.emacs.local.d/exwm")
 
-  ;; exwm vars
-
-  (defvar exwm--terminal-command "termite"
-    "Terminal command to run.")
-
-  (defvar exwm--locking-command "i3lock-fancy"
-    "Command to run when locking session")
-
-  (defvar exwm-app-launcher--prompt "$ "
-    "Prompt for the EXWM application launcher")
-
-  (defvar exwm--hide-tiling-modeline t
-    "Whether to hide modeline.")
-
-  (defun spacemacs/exwm-bind-command (key command &rest bindings)
-    (while key
-      (exwm-input-set-key (kbd key)
-                          `(lambda ()
-                             (interactive)
-                             (start-process-shell-command ,command nil ,command)))
-      (setq key     (pop bindings)
-            command (pop bindings))))
-
-  (spacemacs/exwm-bind-command
-   "<s-return>"  exwm--terminal-command)
-
   (when (and window-system (require 'exwm nil t))
     (require 'exwm-config)
     (exwm-config-default)
+
+    ;; exwm vars
+
+    (defvar exwm--terminal-command "termite"
+      "Terminal command to run.")
+
+    (defvar exwm--locking-command "i3lock-fancy"
+      "Command to run when locking session")
+
+    (defvar exwm-app-launcher--prompt "$ "
+      "Prompt for the EXWM application launcher")
+
+    (defvar exwm--hide-tiling-modeline t
+      "Whether to hide modeline.")
+
+    (defun spacemacs/exwm-bind-command (key command &rest bindings)
+      (while key
+        (exwm-input-set-key (kbd key)
+                            `(lambda ()
+                               (interactive)
+                               (start-process-shell-command ,command nil ,command)))
+        (setq key     (pop bindings)
+              command (pop bindings))))
+
+    (spacemacs/exwm-bind-command
+     "<s-return>"  exwm--terminal-command)
 
     (setq exwm-workspace-number 9
           exwm-workspace-show-all-buffers t
@@ -713,24 +713,6 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
                 (when (string-match "Firefox" exwm-class-name)
                   (exwm-layout-hide-mode-line))))
 
-    (dolist (k '(("s-l" "i3fancy-lock")
-                 ("s-s" "scrot")
-                 ("s-S-s" "scrot -s")
-                 ("s-<return>" "termite")
-                 ("<XF86AudioLowerVolume>"
-                  "amixer sset Master 5%-")
-                 ("<XF86AudioRaiseVolume>"
-                  "amixer set Master unmute; amixer sset Master 5%+")))
-      (let ((f (lambda () (interactive)
-                 (save-window-excursion
-                   (start-process-shell-command (cadr k) nil (cadr k))))))
-        (exwm-input-set-key (kbd (car k)) f)))
-
-    (defun ex-run (command)
-      (interactive (list (read-shell-command "$ ")))
-      (start-process-shell-command command nil command))
-    (define-key exwm-mode-map (kbd "C-x s-x") 'ex-run)
-    (global-set-key (kbd "C-x s-x") 'ex-run)
 
     ;; + Application launcher ('M-&' also works if the output buffer does not
     ;;   bother you). Note that there is no need for processes to be created by
@@ -747,7 +729,64 @@ Can show completions at point for COMMAND using helm or ido"
     ;; lock screen
     (exwm-input-set-key (kbd "<s-escape>")
                         (lambda () (interactive) (start-process "" nil exwm--locking-command)))
-    ;; (server-start)
+
+    ;; Workspace helpers
+
+    (defvar exwm-workspace-switch-wrap t
+      "Whether `spacemacs/exwm-workspace-next' and `spacemacs/exwm-workspace-prev' should wrap.")
+
+    (defun spacemacs/exwm-workspace-next ()
+      "Switch to next exwm-workspaceective (to the right)."
+      (interactive)
+      (let* ((only-workspace? (equal exwm-workspace-number 1))
+             (overflow? (= exwm-workspace-current-index
+                           (1- exwm-workspace-number))))
+        (cond
+         (only-workspace? nil)
+         (overflow?
+          (when exwm-workspace-switch-wrap
+              (exwm-workspace-switch 0)))
+         (t (exwm-workspace-switch  (1+ exwm-workspace-current-index))))))
+    (defun spacemacs/exwm-workspace-prev ()
+      "Switch to next exwm-workspaceective (to the right)."
+      (interactive)
+      (let* ((only-workspace? (equal exwm-workspace-number 1))
+             (overflow? (= exwm-workspace-current-index 0)))
+        (cond
+         (only-workspace? nil)
+         (overflow?
+          (when exwm-workspace-switch-wrap
+            (exwm-workspace-switch (1- exwm-workspace-number))))
+         (t (exwm-workspace-switch  (1- exwm-workspace-current-index))))))
+    (defun spacemacs/exwm-layout-toggle-fullscreen ()
+      "Togggles full screen for Emacs and X windows"
+      (interactive)
+      (if exwm--id
+          (if exwm--fullscreen
+              (exwm-reset)
+            (exwm-layout-set-fullscreen))
+        (spacemacs/toggle-maximize-buffer)))
+
+    ;; Quick swtiching between workspaces
+    (defvar exwm-toggle-workspace 0
+      "Previously selected workspace. Used with `exwm-jump-to-last-exwm'.")
+    (defun exwm-jump-to-last-exwm ()
+      (interactive)
+      (exwm-workspace-switch exwm-toggle-workspace))
+    (defadvice exwm-workspace-switch (before save-toggle-workspace activate)
+      (setq exwm-toggle-workspace exwm-workspace-current-index))
+    ;; Quick keys
+
+    ;; `exwm-input-set-key' allows you to set a global key binding (available in
+    ;; any case). Following are a few examples.
+    ;; + We always need a way to go back to line-mode from char-mode
+    (exwm-input-set-key (kbd "s-r") 'exwm-reset)
+
+    (exwm-input-set-key (kbd "s-f") #'spacemacs/exwm-layout-toggle-fullscreen)
+    (exwm-input-set-key (kbd "<s-tab>") #'exwm-jump-to-last-exwm)
+    ;; + Bind a key to switch workspace interactively
+    (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
+
     (exwm-enable)
     )
   )
