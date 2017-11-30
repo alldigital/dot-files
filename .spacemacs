@@ -81,6 +81,13 @@ values."
      (elfeed :variables
              rmh-elfeed-org-files (list "~/rss/rssfeeds.org"))
      floobits
+
+     ;; (exwm :variables
+     ;;       exwm-app-launcher--prompt "$ "
+     ;;       exwm--locking-command "i3lock-fancy"
+     ;;       exwm--hide-tiling-modeline nil
+     ;;       exwm--terminal-command "termite")
+
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -646,13 +653,105 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
 
 
   ;; Highlight indents
-  (setq highlight-indent-guides-method 'character)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  ;; (setq highlight-indent-guides-method 'character)
+  ;; (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   ;; Replace "sbcl" with the path to your implementation
   (setq inferior-lisp-program "/usr/bin/sbcl")
+
+  ;; EXWM stuff
+
+
+  (add-to-list 'load-path "~/.emacs.local.d/xelb")
+  (add-to-list 'load-path "~/.emacs.local.d/exwm")
+
+  ;; exwm vars
+
+  (defvar exwm--terminal-command "termite"
+    "Terminal command to run.")
+
+  (defvar exwm--locking-command "i3lock-fancy"
+    "Command to run when locking session")
+
+  (defvar exwm-app-launcher--prompt "$ "
+    "Prompt for the EXWM application launcher")
+
+  (defvar exwm--hide-tiling-modeline t
+    "Whether to hide modeline.")
+
+  (defun spacemacs/exwm-bind-command (key command &rest bindings)
+    (while key
+      (exwm-input-set-key (kbd key)
+                          `(lambda ()
+                             (interactive)
+                             (start-process-shell-command ,command nil ,command)))
+      (setq key     (pop bindings)
+            command (pop bindings))))
+
+  (spacemacs/exwm-bind-command
+   "<s-return>"  exwm--terminal-command)
+
+  (when (and window-system (require 'exwm nil t))
+    (require 'exwm-config)
+    (exwm-config-default)
+
+    (setq exwm-workspace-number 9
+          exwm-workspace-show-all-buffers t
+          exwm-layout-show-all-buffers t)
+
+    (require 'exwm-systemtray)
+    (exwm-systemtray-enable)
+    (display-time-mode 1)
+    (setq display-time-string-forms '((format-time-string "%H:%M" now)))
+
+    (add-hook 'exwm-manage-finish-hook
+              (defun ed-exwm-manage-hook ()
+                (when (or (string= exwm-class-name "URxvt")
+                          (string= exwm-class-name "termite"))
+                  (exwm-input-release-keyboard))
+                (when (string-match "Firefox" exwm-class-name)
+                  (exwm-layout-hide-mode-line))))
+
+    (dolist (k '(("s-l" "i3fancy-lock")
+                 ("s-s" "scrot")
+                 ("s-S-s" "scrot -s")
+                 ("s-<return>" "termite")
+                 ("<XF86AudioLowerVolume>"
+                  "amixer sset Master 5%-")
+                 ("<XF86AudioRaiseVolume>"
+                  "amixer set Master unmute; amixer sset Master 5%+")))
+      (let ((f (lambda () (interactive)
+                 (save-window-excursion
+                   (start-process-shell-command (cadr k) nil (cadr k))))))
+        (exwm-input-set-key (kbd (car k)) f)))
+
+    (defun ex-run (command)
+      (interactive (list (read-shell-command "$ ")))
+      (start-process-shell-command command nil command))
+    (define-key exwm-mode-map (kbd "C-x s-x") 'ex-run)
+    (global-set-key (kbd "C-x s-x") 'ex-run)
+
+    ;; + Application launcher ('M-&' also works if the output buffer does not
+    ;;   bother you). Note that there is no need for processes to be created by
+    ;;   Emacs.
+    (defun spacemacs/exwm-application-launcher (command)
+      "Launches an application in your PATH.
+Can show completions at point for COMMAND using helm or ido"
+      (interactive (list (read-shell-command exwm-app-launcher--prompt)))
+      (start-process-shell-command command nil command))
+
+    (exwm-input-set-key (kbd "s-SPC") #'spacemacs/exwm-application-launcher)
+    (exwm-input-set-key (kbd "s-p") #'spacemacs/exwm-application-launcher)
+
+    ;; lock screen
+    (exwm-input-set-key (kbd "<s-escape>")
+                        (lambda () (interactive) (start-process "" nil exwm--locking-command)))
+    ;; (server-start)
+    (exwm-enable)
+    )
   )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -673,7 +772,7 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (floobits frames-only-mode elfeed-web elfeed-org elfeed-goodies ace-jump-mode elfeed geiser treemacs-projectile treemacs-evil symon sunrise-commander rainbow-mode rainbow-identifiers color-identifiers-mode base16-theme ghub+ apiwrap ghub plan9-theme material-theme magithub langtool highlight-indent-guides fontawesome darkroom color-theme-solarized color-theme yapfify yaml-mode web-mode web-beautify vimrc-mode unfill toml-mode tagedit smeargle slime-company slime slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger racer pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pdf-tools ox-gfm orgit org-projectile org-present org-pomodoro alert log4e gntp org-download noflet nginx-mode mwim mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls lua-mode livid-mode skewer-mode simple-httpd live-py-mode less-css-mode js2-refactor js2-mode js-doc jinja2-mode intero hy-mode htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck feature-mode evil-magit magit git-commit with-editor ensime sbt-mode scala-mode emmet-mode elm-mode drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-ansible company-anaconda company common-lisp-snippets command-log-mode coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode chruby cargo rust-mode bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ansible-doc ansible anaconda-mode pythonic ac-ispell auto-complete racket-mode faceup ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (exwm floobits frames-only-mode elfeed-web elfeed-org elfeed-goodies ace-jump-mode elfeed geiser treemacs-projectile treemacs-evil symon sunrise-commander rainbow-mode rainbow-identifiers color-identifiers-mode base16-theme ghub+ apiwrap ghub plan9-theme material-theme magithub langtool highlight-indent-guides fontawesome darkroom color-theme-solarized color-theme yapfify yaml-mode web-mode web-beautify vimrc-mode unfill toml-mode tagedit smeargle slime-company slime slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger racer pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pdf-tools ox-gfm orgit org-projectile org-present org-pomodoro alert log4e gntp org-download noflet nginx-mode mwim mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls lua-mode livid-mode skewer-mode simple-httpd live-py-mode less-css-mode js2-refactor js2-mode js-doc jinja2-mode intero hy-mode htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck feature-mode evil-magit magit git-commit with-editor ensime sbt-mode scala-mode emmet-mode elm-mode drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-ansible company-anaconda company common-lisp-snippets command-log-mode coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode chruby cargo rust-mode bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ansible-doc ansible anaconda-mode pythonic ac-ispell auto-complete racket-mode faceup ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(read-quoted-char-radix 16)
  '(safe-local-variable-values
    (quote
