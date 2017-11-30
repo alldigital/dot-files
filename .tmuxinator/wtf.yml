@@ -16,4 +16,8 @@ windows:
         - sudo iftop -i any
         - watch -n 3 'netstat -t | grep -v LISTEN'
 
-  - cmd:
+  - io:
+      layout: even-vertical
+      panes:
+        - sudo iotop
+        - sudo su - root
