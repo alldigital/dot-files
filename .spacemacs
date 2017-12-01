@@ -38,7 +38,7 @@ values."
      ;; Programming languages
      c-c++
      (clojure :variables clojure-enable-fancify-symbols t)
-     colors
+     (colors variables: colors-enable-nyan-cat-progress-bar t)
      common-lisp
      elm
      emacs-lisp
@@ -758,14 +758,6 @@ Can show completions at point for COMMAND using helm or ido"
           (when exwm-workspace-switch-wrap
             (exwm-workspace-switch (1- exwm-workspace-number))))
          (t (exwm-workspace-switch  (1- exwm-workspace-current-index))))))
-    (defun spacemacs/exwm-layout-toggle-fullscreen ()
-      "Togggles full screen for Emacs and X windows"
-      (interactive)
-      (if exwm--id
-          (if exwm--fullscreen
-              (exwm-reset)
-            (exwm-layout-set-fullscreen))
-        (spacemacs/toggle-maximize-buffer)))
 
     ;; Quick swtiching between workspaces
     (defvar exwm-toggle-workspace 0
@@ -782,10 +774,36 @@ Can show completions at point for COMMAND using helm or ido"
     ;; + We always need a way to go back to line-mode from char-mode
     (exwm-input-set-key (kbd "s-r") 'exwm-reset)
 
-    (exwm-input-set-key (kbd "s-f") #'spacemacs/exwm-layout-toggle-fullscreen)
+    (exwm-input-set-key (kbd "s-f") #'exwm-layout-toggle-fullscreen)
     (exwm-input-set-key (kbd "<s-tab>") #'exwm-jump-to-last-exwm)
     ;; + Bind a key to switch workspace interactively
     (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
+
+    ;; Preserve the habit
+    (exwm-input-set-key (kbd "s-:") 'helm-M-x)
+    (exwm-input-set-key (kbd "s-;") 'evil-ex)
+    ;; Shell (not a real one for the moment)
+    (exwm-input-set-key (kbd "C-'") #'spacemacs/default-pop-shell)
+    ;; Undo window configurations
+    (exwm-input-set-key (kbd "s-u") #'winner-undo)
+    (exwm-input-set-key (kbd "S-s-U") #'winner-redo)
+    ;; Change buffers
+    (exwm-input-set-key (kbd "s-b") #'helm-mini)
+    ;; Focusing windows
+    (exwm-input-set-key (kbd "s-h") #'evil-window-left)
+    (exwm-input-set-key (kbd "s-j") #'evil-window-down)
+    (exwm-input-set-key (kbd "s-k") #'evil-window-up)
+    (exwm-input-set-key (kbd "s-l") #'evil-window-right)
+    ;; Moving Windows
+    (exwm-input-set-key (kbd "s-H") #'evil-window-move-far-left)
+    (exwm-input-set-key (kbd "s-J") #'evil-window-move-very-bottom)
+    (exwm-input-set-key (kbd "s-K") #'evil-window-move-very-top)
+    (exwm-input-set-key (kbd "s-L") #'evil-window-move-far-right)
+    ;; Resize
+    (exwm-input-set-key (kbd "M-s-h") #'spacemacs/shrink-window-horizontally)
+    (exwm-input-set-key (kbd "M-s-j") #'spacemacs/shrink-window)
+    (exwm-input-set-key (kbd "M-s-k") #'spacemacs/enlarge-window)
+    (exwm-input-set-key (kbd "M-s-l") #'spacemacs/enlarge-window-horizontally)
 
     (exwm-enable)
     )
