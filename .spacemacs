@@ -662,11 +662,12 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
 
   ;; EXWM stuff
 
-
+  (message "Adding exwm paths...")
   (add-to-list 'load-path "~/.emacs.local.d/xelb")
   (add-to-list 'load-path "~/.emacs.local.d/exwm")
 
-  (when (and window-system (require 'exwm nil t))
+  ;; (when (and window-system (require 'exwm nil t))
+  (require 'exwm)
     (require 'exwm-config)
     (exwm-config-default)
 
@@ -745,7 +746,7 @@ Can show completions at point for COMMAND using helm or ido"
          (only-workspace? nil)
          (overflow?
           (when exwm-workspace-switch-wrap
-              (exwm-workspace-switch 0)))
+            (exwm-workspace-switch 0)))
          (t (exwm-workspace-switch  (1+ exwm-workspace-current-index))))))
     (defun spacemacs/exwm-workspace-prev ()
       "Switch to next exwm-workspaceective (to the right)."
@@ -767,6 +768,27 @@ Can show completions at point for COMMAND using helm or ido"
       (exwm-workspace-switch exwm-toggle-workspace))
     (defadvice exwm-workspace-switch (before save-toggle-workspace activate)
       (setq exwm-toggle-workspace exwm-workspace-current-index))
+
+    ;; Rename buffer to window title
+    (defun exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
+    (add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
+
+    ;; no mode line for floating windows
+    (add-hook 'exwm-floating-setup-hook 'exwm-layout-hide-mode-line)
+    (add-hook 'exwm-floating-exit-hook 'exwm-layout-show-mode-line)
+
+    ;; per app settings
+
+    (defun exwm-start-in-char-mode ()
+      (when (or (string= exwm-instance-name "emacs")
+                (string= exwm-class-name "Termite")
+                (string= exwm-class-name "URxvt")
+                (string= exwm-class-name "XTerm")
+                (string= exwm-class-name "libreoffice-startcenter"))
+        (exwm-input-release-keyboard (exwm--buffer->id (window-buffer)))))
+
+    (add-hook 'exwm-manage-finish-hook 'exwm-start-in-char-mode)
+
     ;; Quick keys
 
     ;; `exwm-input-set-key' allows you to set a global key binding (available in
@@ -805,8 +827,9 @@ Can show completions at point for COMMAND using helm or ido"
     (exwm-input-set-key (kbd "M-s-k") #'spacemacs/enlarge-window)
     (exwm-input-set-key (kbd "M-s-l") #'spacemacs/enlarge-window-horizontally)
 
+    (server-start)
     (exwm-enable)
-    )
+    ;; )
   )
 
 
@@ -817,6 +840,10 @@ Can show completions at point for COMMAND using helm or ido"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#ffffff" "#f36c60" "#8bc34a" "#fff59d" "#4dd0e1" "#b39ddb" "#81d4fa" "#263238"))
  '(cider-eldoc-display-context-dependent-info t)
  '(cider-eval-result-prefix ";;=> ")
  '(cider-repl-display-help-banner nil)
@@ -824,9 +851,11 @@ Can show completions at point for COMMAND using helm or ido"
  '(cider-show-error-buffer nil)
  '(custom-safe-themes
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "5a7830712d709a4fc128a7998b7fa963f37e960fd2e8aa75c76f692b36e6cf3c" "aea30125ef2e48831f46695418677b9d676c3babf43959c8e978c0ad672a7329" "93268bf5365f22c685550a3cbb8c687a1211e827edc76ce7be3c4bd764054bad" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "85d609b07346d3220e7da1e0b87f66d11b2eeddad945cac775e80d2c1adb0066" "5a39d2a29906ab273f7900a2ae843e9aa29ed5d205873e1199af4c9ec921aaab" "840db7f67ce92c39deb38f38fbc5a990b8f89b0f47b77b96d98e4bf400ee590a" "45a8b89e995faa5c69aa79920acff5d7cb14978fbf140cdd53621b09d782edcf" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" default)))
+    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "5a7830712d709a4fc128a7998b7fa963f37e960fd2e8aa75c76f692b36e6cf3c" "aea30125ef2e48831f46695418677b9d676c3babf43959c8e978c0ad672a7329" "93268bf5365f22c685550a3cbb8c687a1211e827edc76ce7be3c4bd764054bad" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "85d609b07346d3220e7da1e0b87f66d11b2eeddad945cac775e80d2c1adb0066" "5a39d2a29906ab273f7900a2ae843e9aa29ed5d205873e1199af4c9ec921aaab" "840db7f67ce92c39deb38f38fbc5a990b8f89b0f47b77b96d98e4bf400ee590a" "45a8b89e995faa5c69aa79920acff5d7cb14978fbf140cdd53621b09d782edcf" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" default)))
  '(elfeed-feeds (quote ("http://news.ycombinator.com/rss")))
  '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#37474f" t)
+ '(hl-sexp-background-color "#1c1f26")
  '(package-selected-packages
    (quote
     (exwm floobits frames-only-mode elfeed-web elfeed-org elfeed-goodies ace-jump-mode elfeed geiser treemacs-projectile treemacs-evil symon sunrise-commander rainbow-mode rainbow-identifiers color-identifiers-mode base16-theme ghub+ apiwrap ghub plan9-theme material-theme magithub langtool highlight-indent-guides fontawesome darkroom color-theme-solarized color-theme yapfify yaml-mode web-mode web-beautify vimrc-mode unfill toml-mode tagedit smeargle slime-company slime slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv ranger racer pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pdf-tools ox-gfm orgit org-projectile org-present org-pomodoro alert log4e gntp org-download noflet nginx-mode mwim mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls lua-mode livid-mode skewer-mode simple-httpd live-py-mode less-css-mode js2-refactor js2-mode js-doc jinja2-mode intero hy-mode htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck feature-mode evil-magit magit git-commit with-editor ensime sbt-mode scala-mode emmet-mode elm-mode drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-ansible company-anaconda company common-lisp-snippets command-log-mode coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode chruby cargo rust-mode bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ansible-doc ansible anaconda-mode pythonic ac-ispell auto-complete racket-mode faceup ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
@@ -835,7 +864,29 @@ Can show completions at point for COMMAND using helm or ido"
    (quote
     ((eval modify-syntax-entry 43 "'")
      (eval modify-syntax-entry 36 "'")
-     (eval modify-syntax-entry 126 "'")))))
+     (eval modify-syntax-entry 126 "'"))))
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#f36c60")
+     (40 . "#ff9800")
+     (60 . "#fff59d")
+     (80 . "#8bc34a")
+     (100 . "#81d4fa")
+     (120 . "#4dd0e1")
+     (140 . "#b39ddb")
+     (160 . "#f36c60")
+     (180 . "#ff9800")
+     (200 . "#fff59d")
+     (220 . "#8bc34a")
+     (240 . "#81d4fa")
+     (260 . "#4dd0e1")
+     (280 . "#b39ddb")
+     (300 . "#f36c60")
+     (320 . "#ff9800")
+     (340 . "#fff59d")
+     (360 . "#8bc34a"))))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
