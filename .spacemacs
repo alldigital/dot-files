@@ -779,16 +779,48 @@ Can show completions at point for COMMAND using helm or ido"
 
     ;; per app settings
 
-    (defun exwm-start-in-char-mode ()
-      (when (or (string= exwm-instance-name "emacs")
-                (string= exwm-class-name "Termite")
-                (string= exwm-class-name "URxvt")
-                (string= exwm-class-name "XTerm")
-                (string= exwm-class-name "libreoffice-startcenter"))
-        (exwm-input-release-keyboard (exwm--buffer->id (window-buffer)))))
+    ;; (defun exwm-start-in-char-mode ()
+    ;;   (when (or (string= exwm-instance-name "emacs")
+    ;;             (string= exwm-class-name "Termite")
+    ;;             (string= exwm-class-name "URxvt")
+    ;;             (string= exwm-class-name "XTerm")
+    ;;             (string= exwm-class-name "libreoffice-startcenter"))
+    ;;     (exwm-input-release-keyboard (exwm--buffer->id (window-buffer)))))
 
-    (add-hook 'exwm-manage-finish-hook 'exwm-start-in-char-mode)
+    ;; (add-hook 'exwm-manage-finish-hook 'exwm-start-in-char-mode)
 
+    ;;make exwm windows default to char instead of line mode
+
+    (add-hook 'exwm-manage-finish-hook
+              (lambda () (call-interactively #'exwm-input-release-keyboard)
+                (exwm-layout-hide-mode-line)))
+
+                                        ;send all keypresses to emacs in line mode
+    (setq exwm-input-line-mode-passthrough t)
+
+
+
+    (defun exwm-input-line-mode ()
+      "Set exwm window to line-mode and show mode line"
+      (call-interactively #'exwm-input-grab-keyboard)
+      (exwm-layout-show-mode-line))
+
+    (defun exwm-input-char-mode ()
+      "Set exwm window to char-mode and hide mode line"
+      (call-interactively #'exwm-input-release-keyboard)
+      (exwm-layout-hide-mode-line))
+
+    (defun exwm-input-toggle-mode ()
+      "Toggle between line- and char-mode"
+      (with-current-buffer (window-buffer)
+        (when (eq major-mode 'exwm-mode)
+          (if (equal (second (second mode-line-process)) "line")
+              (exwm-input-char-mode)
+            (exwm-input-line-mode)))))
+
+    (exwm-input-set-key (kbd "s-i")
+                        (lambda () (interactive)
+                          (exwm-input-toggle-mode)))
     ;; Quick keys
 
     ;; `exwm-input-set-key' allows you to set a global key binding (available in
@@ -828,7 +860,7 @@ Can show completions at point for COMMAND using helm or ido"
     (exwm-input-set-key (kbd "M-s-l") #'spacemacs/enlarge-window-horizontally)
 
     (server-start)
-    (exwm-enable)
+    ;; (exwm-enable)
     ;; )
   )
 
