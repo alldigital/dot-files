@@ -653,8 +653,8 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
 
 
   ;; Highlight indents
-  ;; (setq highlight-indent-guides-method 'character)
-  ;; (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'character)
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
   ;; Replace "sbcl" with the path to your implementation
@@ -682,6 +682,9 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     (defvar exwm-app-launcher--prompt "$ "
       "Prompt for the EXWM application launcher")
 
+    (defvar exwm--rofi-command "rofi -modi \"run,ssh\" -show run -font \"Input Mono Compressed 10\""
+      "Command to start rofi launcher")
+
     (defvar exwm--hide-tiling-modeline t
       "Whether to hide modeline.")
 
@@ -697,6 +700,8 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     (spacemacs/exwm-bind-command
      "<s-return>"  exwm--terminal-command)
 
+    (spacemacs/exwm-bind-command "s-d"  exwm--rofi-command)
+
     (setq exwm-workspace-number 9
           exwm-workspace-show-all-buffers t
           exwm-layout-show-all-buffers t)
@@ -705,15 +710,6 @@ Adapted code from: http://ergoemacs.org/emacs/elisp_html-linkify.html"
     (exwm-systemtray-enable)
     (display-time-mode 1)
     (setq display-time-string-forms '((format-time-string "%H:%M" now)))
-
-    (add-hook 'exwm-manage-finish-hook
-              (defun ed-exwm-manage-hook ()
-                (when (or (string= exwm-class-name "URxvt")
-                          (string= exwm-class-name "termite"))
-                  (exwm-input-release-keyboard))
-                (when (string-match "Firefox" exwm-class-name)
-                  (exwm-layout-hide-mode-line))))
-
 
     ;; + Application launcher ('M-&' also works if the output buffer does not
     ;;   bother you). Note that there is no need for processes to be created by
@@ -862,6 +858,7 @@ Can show completions at point for COMMAND using helm or ido"
     (server-start)
     ;; (exwm-enable)
     ;; )
+
   )
 
 

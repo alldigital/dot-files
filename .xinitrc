@@ -8,6 +8,9 @@ xhost +SI:localuser:$USER
 exec setxkbmap -option caps:backspace -option shift:both_capslock -option 'grp:alt_space_toggle' "us,ru(winkeys)" &
 xcape -e 'Control_L=Escape'
 
+# Turn off touchpad
+$HOME/bin/touchpad.sh
+
 # Fallback cursor
 xsetroot -cursor_name left_ptr
 

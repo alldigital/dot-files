@@ -19,17 +19,17 @@ conky.config = {
 -- Colors are in dzen2 format.
 conky.text =
 [[
-^fg(grey)CPU:^fg(DeepSkyBlue)$cpu% \
-^fg(grey)CPU:^fg(DeepSkyBlue)$acpitemp C | \
-^fg(grey)RAM:^fg(DeepSkyBlue)$memperc% \
-^fg(grey)Swap:^fg(DeepSkyBlue)$swap \
-^fg(grey)↓^fg(DeepSkyBlue)${eval $${downspeedf ${gw_iface}}} \
-^fg(grey)↑^fg(DeepSkyBlue)${eval $${upspeedf ${gw_iface}}} \
-^fg(grey)♪^fg(DeepSkyBlue)${exec amixer get Master -M | grep -oE "[0-9]*%"} \
-${if_match $battery_percent != 0}^fg(grey)⚡^fg(DeepSkyBlue)${if_match ${battery_percent} <= 5}^fg(Red)${endif}${battery_short}:${battery_time} ${endif} | \
-^fg(grey)/ ^fg(DeepSkyBlue)${fs_used /}^fg(grey)/^fg(DeepSkyBlue)${fs_free /} | ^fg(DeepSkyBlue)${diskio sda} \
-^fg(grey)/data ^fg(DeepSkyBlue)${fs_used /data}^fg(grey)/^fg(DeepSkyBlue)${fs_free /data} | ^fg(DeepSkyBlue)${diskio sdb} \
-^fg(grey)${time %a %d %b %R} ]]
+^fg(grey)CPU:^fg(cyan)$cpu% \
+^fg(grey)CPU:^fg(cyan)$acpitemp C | \
+^fg(grey)RAM:^fg(cyan)$memperc% \
+^fg(grey)Swap:^fg(cyan)$swap \
+^fg(grey)↓^fg(cyan)${eval $${downspeedf ${gw_iface}}} \
+^fg(grey)↑^fg(cyan)${eval $${upspeedf ${gw_iface}}} \
+^fg(grey)♪^fg(cyan)${exec amixer get Master -M | grep -oE "[0-9]*%"} \
+${if_match $battery_percent != 0}^fg(grey)⚡^fg(cyan)${if_match ${battery_percent} <= 5}^fg(Red)${endif}${battery_short}:${battery_time} ${endif} | \
+^fg(grey)/ ^fg(cyan)${fs_used /}^fg(grey)/^fg(cyan)${fs_free /} | ^fg(cyan)${diskio sda} \
+^fg(grey)/data ^fg(cyan)${fs_used /data}^fg(grey)/^fg(cyan)${fs_free /data} | ^fg(cyan)${diskio sdb} \
+^fg(white)${time %a %d %b %R} ]]
 
 -- TODO: Change symbol / color when mixer is mute.
 -- TODO: Unread mail with native 'new_mails' does not seem to support totals.
