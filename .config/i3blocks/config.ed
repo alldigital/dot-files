@@ -35,10 +35,6 @@ markup=none
 instance=Dagomys,RU
 interval=60
 
-[temperature]
-label=
-interval=5
-
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
@@ -110,6 +106,7 @@ interval=10
 [wifi]
 instance=wlp3s0
 label=
+min_width=100%
 interval=10
 separator=false
 
@@ -128,11 +125,16 @@ min_width=1023K  1023K
 [cpu_usage]
 label=
 interval=10
-#min_width=CPU: 100.00%
+min_width= 100.00%
 separator=false
+
+[temperature]
+label=
+interval=5
 
 [load_average]
 label=
+min_width=100.00
 interval=5
 
 [battery]
@@ -142,10 +144,15 @@ interval=10
 
 # Date Time
 #
+[date]
+label= 
+command=date '+%a %b %d %Y'
+interval=1
+
 [time]
 #command=date '+%Y-%m-%d %H:%M:%S'
 label=
-command=date
+command=date '+%H:%M:%S'
 interval=1
 
 # Generic media player support
