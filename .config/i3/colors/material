@@ -21,7 +21,7 @@
 set $bg-color 	                #263238
 set $focused                    #89DDFF
 set $inactive-bg-color          #2E3C43
-set $text-color                 #FFFFFF
+set $text-color                 #000000
 set $inactive-text-color        #EEFFFF
 set $urgent-bg-color            #D33682
 set $indicator                  #FFFFFF
