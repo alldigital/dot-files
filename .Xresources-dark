@@ -151,5 +151,5 @@ rofi.color-enabled: true
 rofi.color-window: S_base03, S_base03, S_base02
 rofi.color-normal: S_base03, S_base0, S_base03, S_base02, S_base0
 rofi.color-active: S_base03, S_blue, S_base03, S_base02, S_blue
-rofi.color-urgent: S_base03, S_magents, S_base03, S_base02, S_magents
+rofi.color-urgent: S_base03, S_magenta, S_base03, S_base02, S_magenta
 rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"

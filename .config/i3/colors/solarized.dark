@@ -24,3 +24,11 @@ set $base0D #268bd2
 set $base0E #6c71c4
 set $base0F #d33682
 
+set $bg-color 	                #002B36
+set $focused                    #4F4F4F
+set $inactive-bg-color          #002N38
+set $text-color                 #CDD3D3
+set $inactive-text-color        #676E7D
+set $urgent-bg-color            #D33682
+set $indicator                  #FFFFFF
+set $separator                  #546E7A

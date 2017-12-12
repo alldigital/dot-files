@@ -1,6 +1,50 @@
 # -*- mode:conf -*-
-set $background #263238
-set $foreground #CDD3D3
-set $focused_background #C2E982
-set $active_background #4F4F4F
-set $normal_background #F1F1F1
+# scheme: "Material"
+
+# base00: "263238"
+# base01: "2E3C43"
+# base02: "314549"
+# base03: "546E7A"
+# base04: "B2CCD6"
+# base05: "EEFFFF"
+# base06: "EEFFFF"
+# base07: "FFFFFF"
+# base08: "F07178"
+# base09: "F78C6C"
+# base0A: "FFCB6B"
+# base0B: "C3E88D"
+# base0C: "89DDFF"
+# base0D: "82AAFF"
+# base0E: "C792EA"
+# base0F: "FF5370"
+
+set $bg-color 	                #263238
+set $focused                    #89DDFF
+set $inactive-bg-color          #2E3C43
+set $text-color                 #FFFFFF
+set $inactive-text-color        #EEFFFF
+set $urgent-bg-color            #D33682
+set $indicator                  #FFFFFF
+set $separator                  #546E7A
+
+# window colors
+#                       border                  background              text                    indicator
+# client.focused          $focused                $focused                $text-color             $indicator
+# client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
+# client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
+# client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $indicator
+
+# # bar
+# bar {
+#   status_command i3blocks
+# 	tray_output primary
+# 	colors {
+# 		background $bg-color
+# 	  separator  $separator
+# 		#                       border                  background              text
+# 		focused_workspace       $focused                $focused                $text-color
+# 		inactive_workspace      $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+# 		active_workspace        $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+# 		urgent_workspace        $urgent-bg-color        $urgent-bg-color        $text-color
+# 	}
+# }
