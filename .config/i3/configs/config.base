@@ -49,8 +49,6 @@ workspace $ws10 gaps outer 0
 
 ## Assign section
 assign [class="^Thunderbird$"]  → $ws2
-assign [class="Firefox"] $ws2
-assign [class="Google-chrome"] $ws2
 assign [title="Netbeans"] $ws10
 assign [class="jetbrains-idea"] $ws10
 assign [class="jetbrains-studio"] $ws10
@@ -104,5 +102,3 @@ for_window [class="google-chrome"] border 1pixel
 # set Netbeans load screen floating
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
 for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] border none
-
-#for_window [class="libreoffce"] rename workspace 8 to "8: doc", move container to workspace "8: doc", workspace "8: doc", focus

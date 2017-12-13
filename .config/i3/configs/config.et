@@ -1,21 +1,20 @@
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
 bar {
   position top
-	status_command i3blocks -c ~/.config/i3blocks/config.et
-    tray_output LVDS1
+	status_command i3blocks -c ~/.config/i3blocks/config.ed
+  tray_output LVDS1
 
-    	colors {
-#		colorclass			border		background	text
-		separator			$base03
-		background			$base01
-		statusline			$base05
-
-		focused_workspace	$base0C		$base0C		$base07
-		active_workspace	$base02		$base02		$base07
-		inactive_workspace	$base01		$base01		$base05
-		urgent_workspace	$base0F		$base0F		$base07
+	colors {
+		background $bg-color
+	  separator  $separator
+		#                       border                  background              text
+		focused_workspace       $focused                $focused                $text-color
+		inactive_workspace      $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+		active_workspace        $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+		urgent_workspace        $urgent-bg-color        $urgent-bg-color        $text-color
 	}
 
-    font pango:PragmataPro for Powerline Bold 10
+  font pango:Input Mono Compressed Medium 10
 }
