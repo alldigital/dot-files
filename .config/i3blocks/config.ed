@@ -30,6 +30,10 @@ command=$HOME/.config/i3blocks/blocks/$BLOCK_NAME
 separator_block_width=9
 markup=none
 
+# [monitor_manager]
+# command=$HOME/.config/i3blocks/i3blocks-contrib/monitor_manager/monitor_manager
+# interval=once
+
 # Weather indocator
 [weather]
 instance=Dagomys,RU
