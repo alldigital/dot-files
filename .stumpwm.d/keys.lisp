@@ -14,7 +14,7 @@
            m)))
 
 (run-shell-command (concatenate 'string
-                                "xkbcomp ~/.Xkeymap :0."
+                                "xkbcomp ~/.Xkeymap.stumpwm :0."
                                 (write-to-string ed/display-number)))
 
 ;; Async run-shell-command?
