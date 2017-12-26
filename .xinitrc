@@ -14,6 +14,7 @@ exec $HOME /bin/touchpad.sh &
 
 # Fallback cursor
 xsetroot -cursor_name left_ptr
+unclutter &
 
 # Keyboard repeat rate
 xset r rate 300 60
