@@ -1,5 +1,14 @@
 # Useful aliases {{{
 
+set -x LC_ALL en_US.UTF-8
+set -x LANG en_US.UTF-8
+
+# enable keybindings
+function fish_user_key_bindings
+  bind "&&" 'commandline -i "; and"'
+  bind "||" 'commandline -i "; or"'
+end
+
 alias c 'clear'
 alias hl 'less -R'
 
