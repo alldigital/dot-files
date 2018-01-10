@@ -4,7 +4,7 @@
 bar {
   position top
 	status_command i3blocks -c ~/.config/i3blocks/config.ed
-  tray_output LVDS1
+  tray_output VGA-1
 
 	colors {
 		background $bg-color
