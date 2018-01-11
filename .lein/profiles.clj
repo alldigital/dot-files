@@ -1,6 +1,6 @@
 {:user {:dependencies [[pjstadig/humane-test-output "0.8.1"]
                        ; [org.clojure/tools.nrepl "0.2.13"]
-                       [org.clojure/clojure "1.8.0"]
+                       [org.clojure/clojure "1.9.0"]
                        [alembic "0.3.2"]
                        [jonase/eastwood "0.2.3"]]
         :injections [(require 'pjstadig.humane-test-output)
