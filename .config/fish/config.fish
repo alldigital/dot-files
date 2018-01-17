@@ -6,6 +6,10 @@ else
     set -gx TERM xterm-256color
 end
 
+# emacs as my default editor
+set -gx EDITOR "emacsclient -a vim -c -n"
+set -gx VISUAL "emacsclient -a vim -c -n"
+
 # Override default prompt colors
 set -g theme_color_scheme terminal2
 
@@ -21,4 +25,8 @@ end
 
 function time --description="Time just like in Bash"
   command time --portability $argv
+end
+
+function sudobangbang --on-event fish_postexec
+    abbr !! sudo $argv[1]
 end
