@@ -30,3 +30,9 @@ end
 function sudobangbang --on-event fish_postexec
     abbr !! sudo $argv[1]
 end
+
+# And finally, a magnificent fuck
+thefuck --alias | source
+
+# Aliases
+alias reload-fish 'source ~/.config/fish/config.fish'
