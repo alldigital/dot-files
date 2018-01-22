@@ -36,3 +36,20 @@ thefuck --alias | source
 
 # Aliases
 alias reload-fish 'source ~/.config/fish/config.fish'
+
+# Termux specific
+function ssh-termux
+    command ssh -p 8022 -i ~/.termux/id_rsa $argv
+end
+
+function scp-termux
+    command scp -P 8022 -i ~/.termux/id_rsa $argv
+end
+
+function rsync-termux
+    command rsync -azz -e "ssh -p 8022 -i ~/.termux/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" $argv
+end
+
+function fish-reload
+    source ~/.config/fish/config.fish
+end
