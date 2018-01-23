@@ -34,6 +34,11 @@ markup=none
 # command=$HOME/.config/i3blocks/i3blocks-contrib/monitor_manager/monitor_manager
 # interval=once
 
+[pomodoro]
+interval=1
+command=tomaatti
+label=
+
 # Weather indocator
 [weather]
 instance=Dagomys,RU

@@ -1,11 +1,5 @@
 fish_vi_key_bindings
 
-if test $TERM = "eterm-256color";
-    set fish_term24bit 0
-else
-    set -gx TERM xterm-256color
-end
-
 # emacs as my default editor
 set -gx EDITOR "emacsclient -a vim -c -n"
 set -gx VISUAL "emacsclient -a vim -c -n"
@@ -38,6 +32,7 @@ thefuck --alias | source
 alias reload-fish 'source ~/.config/fish/config.fish'
 
 # Termux specific
+set -g  termux_home /data/data/com.termux/files/home
 function ssh-termux
     command ssh -p 8022 -i ~/.termux/id_rsa $argv
 end
