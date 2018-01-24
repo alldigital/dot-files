@@ -19,8 +19,9 @@ exec --no-startup-id xset r rate 300 60
 
 exec insync start &
 exec numlockx on &
-exec xcape -e 'Control_L=Escape'
+exec xcape -e '#66=Escape' &
 exec sleep 1
+exec ~/bin/touchpad.sh
 exec dunst -config ~/.config/dunst/dunstrc &
 exec --no-startup-id xautolock -time 10 -locker i3lock-fancy &
 exec feh --bg-scale ~/.wallpaper/wallpaper.jpg
