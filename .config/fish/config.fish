@@ -33,8 +33,13 @@ alias reload-fish 'source ~/.config/fish/config.fish'
 
 # Termux specific
 set -g  termux_home /data/data/com.termux/files/home
+
 function ssh-termux
     command ssh -p 8022 -i ~/.termux/id_rsa $argv
+end
+
+function mosh-termux
+    command mosh --ssh="ssh -p 8022 -i ~/.termux/id_rsa" $argv
 end
 
 function scp-termux
