@@ -19,6 +19,7 @@ exec --no-startup-id xset r rate 300 60
 
 exec insync start &
 exec numlockx on &
+exec unclutter &
 exec xcape -e '#66=Escape' &
 exec sleep 1
 exec ~/bin/touchpad.sh
