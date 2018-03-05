@@ -197,12 +197,19 @@ set -g message-bg colour166
 # Additional Settings
 #
 
+# Additional programs to restore
+set -g @resurrect-processes 'ssh psql mysql sqlite3 sudo python watch journalctl'
+# Restore tmux session
+set -g @continuum-restore 'on'
+
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 
 set -g @tpm_plugins " \
+  tmux-plugins/tmux-yank \
   tmux-plugins/tmux-copycat \
   tmux-plugins/tmux-resurrect \
+  tmux-plugins/tmux-continuum \
   tmux-plugins/tmux-sidebar \
   tmux-plugins/tmux-sensible \
 "
