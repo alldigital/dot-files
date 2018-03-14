@@ -3,8 +3,8 @@
 
 # App shortcuts
 
-bindsym $mod+g exec google-chrome-stable --proxy-pac-url="http://antizapret.prostovpn.org/proxy.pac"
-#bindsym $mod+g exec firefox
+#bindsym $mod+g exec google-chrome-stable --proxy-pac-url="http://antizapret.prostovpn.org/proxy.pac"
+bindsym $mod+g exec firefox
 bindsym $mod+o exec LANG=ru_RU.UTF-8 libreoffice
 
 bindsym Print exec scrot -e 'mv $f /home/ed/Pictures'
